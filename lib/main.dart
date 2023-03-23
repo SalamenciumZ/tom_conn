@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tom_conn/first_time_use.dart';
+import 'package:tom_conn/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,6 +27,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: OnboardingScreen(),
+      routes: {
+        '/login': (context) => Login(),
+      },
     );
   }
 }

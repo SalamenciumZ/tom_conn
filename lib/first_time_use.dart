@@ -68,7 +68,9 @@ class _OnBoardingScreenState extends State<OnboardingScreen> {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromRGBO(254, 192, 15, 1)),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/login');
+                    },
                     child: Text('LOGIN'),
                   ),
                 ],
