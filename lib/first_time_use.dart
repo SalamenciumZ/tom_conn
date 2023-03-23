@@ -56,11 +56,22 @@ class _OnBoardingScreenState extends State<OnboardingScreen> {
             ),
             Container(
               color: Colors.white,
-              child: Center(
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text('LOGIN'),
-                ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('START CONNECTING NOW!'),
+                  Image.asset(
+                    'assets/images/ust_statue.png',
+                    height: 370,
+                    width: 450,
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromRGBO(254, 192, 15, 1)),
+                    onPressed: () {},
+                    child: Text('LOGIN'),
+                  ),
+                ],
               ),
             )
           ],
