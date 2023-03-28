@@ -96,12 +96,17 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                       SizedBox(width: 4),
-                      Text(
-                        'guest.',
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/home');
+                        },
+                        child: Text(
+                          'guest.',
+                          style: TextStyle(
+                            color: Color.fromRGBO(254, 192, 15, 1),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                          ),
                         ),
                       ),
                     ],
