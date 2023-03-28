@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tom_conn/first_time_use.dart';
 import 'package:tom_conn/login.dart';
+import 'package:tom_conn/loading_screen.dart';
 
 void main() {
   runApp(const MyApp());
