@@ -32,8 +32,7 @@ class _OnBoardingScreenState extends State<OnboardingScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Lottie.network(
-                          'https://assets8.lottiefiles.com/packages/lf20_lc46h4dr.json'),
+                      Lottie.asset('assets/animations/tiger_waving.json'),
                       Text(
                         'WELCOME TO THE UST ONE-STOP SHOP!!',
                         style: TextStyle(
@@ -49,8 +48,8 @@ class _OnBoardingScreenState extends State<OnboardingScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Lottie.network(
-                        'https://assets10.lottiefiles.com/packages/lf20_mnek7m6l.json',
+                      Lottie.asset(
+                        'assets/animations/smartphone.json',
                       ),
                       Text(
                         'ALL OF UST\u0027s SERVICES IN ONE PLATFORM!',
@@ -68,9 +67,7 @@ class _OnBoardingScreenState extends State<OnboardingScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Lottie.network(
-                        'https://assets1.lottiefiles.com/packages/lf20_hk9b4dem.json',
-                      ),
+                      Lottie.asset('assets/animations/services.json'),
                       Text(
                         'LET\u0027s GET CONNECTED THOMASIAN!',
                         style: TextStyle(

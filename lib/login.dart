@@ -111,7 +111,7 @@ class _LoginState extends State<Login> {
                         child: Text(
                           'guest.',
                           style: TextStyle(
-                            color: Color.fromRGBO(254, 192, 15, 1),
+                            color: Color.fromRGBO(0, 164, 255, 1.0),
                             fontWeight: FontWeight.bold,
                             fontSize: getScreenWidth(context) * 0.035,
                           ),
