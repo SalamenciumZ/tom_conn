@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => HomeScreen(),
         '/login': (context) => Login(),
         '/loading': (context) => LoadingPage(),
+        '/onboarding': (context) => OnboardingScreen(),
       },
     );
   }

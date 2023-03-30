@@ -42,7 +42,7 @@ dependencies:
   line_awesome_flutter: ^2.0.0
   font_awesome_flutter: ^10.4.0
   material_design_icons_flutter: ^6.0.7096
-
+  round_icon: ^0.0.4
 dev_dependencies:
   flutter_test:
     sdk: flutter

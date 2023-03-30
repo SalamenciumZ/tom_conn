@@ -4,6 +4,7 @@ import 'package:ionicons/ionicons.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:tom_conn/utilities/getWH.dart';
+import 'package:round_icon/round_icon.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -111,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Text(
                 'Menu',
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: getScreenWidth(context) * 0.06,
                   color: Colors.white,
                 ),
               ),
@@ -120,15 +121,33 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             ListTile(
-              title: Text('Item 1'),
+              title: Text(
+                'Settings',
+                style: TextStyle(
+                  fontSize: getScreenWidth(context) * 0.040,
+                  color: Colors.black,
+                ),
+              ),
               onTap: () {},
             ),
             ListTile(
-              title: Text('Item 2'),
+              title: Text(
+                'About Us',
+                style: TextStyle(
+                  fontSize: getScreenWidth(context) * 0.040,
+                  color: Colors.black,
+                ),
+              ),
               onTap: () {},
             ),
             ListTile(
-              title: Text('Item 3'),
+              title: Text(
+                'Disclaimer',
+                style: TextStyle(
+                  fontSize: getScreenWidth(context) * 0.040,
+                  color: Colors.black,
+                ),
+              ),
               onTap: () {},
             ),
           ],
@@ -137,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         children: <Widget>[
           Container(
-            height: 200,
+            height: getScreenHeight(context) * 0.25,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/images/ust_main_building.png'),
@@ -146,228 +165,304 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Expanded(
-            child: GridView.count(crossAxisCount: 4, children: <Widget>[
-              InkWell(
-                onTap: () {},
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      MdiIcons.townHall,
-                      color: Colors.black,
-                      size: 50,
+            child: GridView.count(
+                crossAxisCount: 4,
+                mainAxisSpacing: getScreenHeight(context) * 0.041,
+                crossAxisSpacing: getScreenWidth(context) * 0.010,
+                children: <Widget>[
+                  InkWell(
+                    onTap: () {},
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: getScreenWidth(context) * 0.07,
+                          backgroundColor: Color.fromRGBO(255, 179, 0, 1),
+                          child: Icon(
+                            MdiIcons.townHall,
+                            color: Colors.white,
+                            size: getScreenWidth(context) * 0.06,
+                          ),
+                        ),
+                        SizedBox(height: getScreenHeight(context) * 0.010),
+                        Text(
+                          'General Info',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: getScreenWidth(context) * 0.03),
+                        ),
+                      ],
                     ),
-                    Text(
-                      'General Info',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: getScreenWidth(context) * 0.07,
+                          backgroundColor: Color.fromRGBO(255, 179, 0, 1),
+                          child: Icon(
+                            LineAwesomeIcons.chalkboard_teacher,
+                            color: Colors.white,
+                            size: getScreenWidth(context) * 0.06,
+                          ),
+                        ),
+                        SizedBox(height: getScreenHeight(context) * 0.010),
+                        Text(
+                          'Faculty and Staff',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: getScreenWidth(context) * 0.03),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-              InkWell(
-                onTap: () {},
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      LineAwesomeIcons.chalkboard_teacher,
-                      color: Colors.black,
-                      size: 50,
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: getScreenWidth(context) * 0.07,
+                          backgroundColor: Color.fromRGBO(255, 179, 0, 1),
+                          child: Icon(
+                            MdiIcons.accountSchoolOutline,
+                            color: Colors.white,
+                            size: getScreenWidth(context) * 0.06,
+                          ),
+                        ),
+                        SizedBox(height: getScreenHeight(context) * 0.010),
+                        Text(
+                          'Alumni',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: getScreenWidth(context) * 0.03),
+                        ),
+                      ],
                     ),
-                    Text(
-                      'Faculty and Staff',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: getScreenWidth(context) * 0.07,
+                          backgroundColor: Color.fromRGBO(255, 179, 0, 1),
+                          child: Icon(
+                            Ionicons.search_outline,
+                            color: Colors.white,
+                            size: getScreenWidth(context) * 0.06,
+                          ),
+                        ),
+                        SizedBox(height: getScreenHeight(context) * 0.010),
+                        Text(
+                          'Researches',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: getScreenWidth(context) * 0.03),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-              InkWell(
-                onTap: () {},
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      MdiIcons.accountSchoolOutline,
-                      color: Colors.black,
-                      size: 50,
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: getScreenWidth(context) * 0.07,
+                          backgroundColor: Color.fromRGBO(255, 179, 0, 1),
+                          child: Icon(
+                            Ionicons.newspaper_outline,
+                            color: Colors.white,
+                            size: getScreenWidth(context) * 0.06,
+                          ),
+                        ),
+                        SizedBox(height: getScreenHeight(context) * 0.010),
+                        Text(
+                          'News/Events',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: getScreenWidth(context) * 0.03),
+                        )
+                      ],
                     ),
-                    Text(
-                      'Alumni',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: getScreenWidth(context) * 0.07,
+                          backgroundColor: Color.fromRGBO(255, 179, 0, 1),
+                          child: Icon(
+                            CupertinoIcons.shopping_cart,
+                            color: Colors.white,
+                            size: getScreenWidth(context) * 0.06,
+                          ),
+                        ),
+                        SizedBox(height: getScreenHeight(context) * 0.010),
+                        Text(
+                          'Shop',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: getScreenWidth(context) * 0.03),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-              InkWell(
-                onTap: () {},
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Ionicons.search_outline,
-                      color: Colors.black,
-                      size: 50,
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: getScreenWidth(context) * 0.07,
+                          backgroundColor: Color.fromRGBO(255, 179, 0, 1),
+                          child: Icon(
+                            LineAwesomeIcons.heartbeat,
+                            color: Colors.white,
+                            size: getScreenWidth(context) * 0.06,
+                          ),
+                        ),
+                        SizedBox(height: getScreenHeight(context) * 0.010),
+                        Text(
+                          'Hospital Services',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: getScreenWidth(context) * 0.03),
+                        ),
+                      ],
                     ),
-                    Text(
-                      'Research Projects',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: getScreenWidth(context) * 0.07,
+                          backgroundColor: Color.fromRGBO(255, 179, 0, 1),
+                          child: Icon(
+                            Ionicons.briefcase_outline,
+                            color: Colors.white,
+                            size: getScreenWidth(context) * 0.06,
+                          ),
+                        ),
+                        SizedBox(height: getScreenHeight(context) * 0.010),
+                        Text(
+                          'Career',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: getScreenWidth(context) * 0.03),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-              InkWell(
-                onTap: () {},
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Ionicons.newspaper_outline,
-                      color: Colors.black,
-                      size: 50,
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: getScreenWidth(context) * 0.07,
+                          backgroundColor: Color.fromRGBO(255, 179, 0, 1),
+                          child: Icon(
+                            Ionicons.book_outline,
+                            color: Colors.white,
+                            size: getScreenWidth(context) * 0.06,
+                          ),
+                        ),
+                        SizedBox(height: getScreenHeight(context) * 0.010),
+                        Text(
+                          'Library',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: getScreenWidth(context) * 0.03),
+                        ),
+                      ],
                     ),
-                    Text(
-                      'News/Events',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    )
-                  ],
-                ),
-              ),
-              InkWell(
-                onTap: () {},
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      CupertinoIcons.shopping_cart,
-                      color: Colors.black,
-                      size: 50,
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: getScreenWidth(context) * 0.07,
+                          backgroundColor: Color.fromRGBO(255, 179, 0, 1),
+                          child: Icon(
+                            CupertinoIcons.group,
+                            color: Colors.white,
+                            size: getScreenWidth(context) * 0.06,
+                          ),
+                        ),
+                        SizedBox(height: getScreenHeight(context) * 0.010),
+                        Text(
+                          'Organizations',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: getScreenWidth(context) * 0.03),
+                        ),
+                      ],
                     ),
-                    Text(
-                      'Shop',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: getScreenWidth(context) * 0.07,
+                          backgroundColor: Color.fromRGBO(255, 179, 0, 1),
+                          child: Icon(
+                            Ionicons.fast_food_outline,
+                            color: Colors.white,
+                            size: getScreenWidth(context) * 0.06,
+                          ),
+                        ),
+                        SizedBox(height: getScreenHeight(context) * 0.010),
+                        Text(
+                          'Food',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: getScreenWidth(context) * 0.03),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-              InkWell(
-                onTap: () {},
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      LineAwesomeIcons.heartbeat,
-                      color: Colors.black,
-                      size: 50,
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: getScreenWidth(context) * 0.07,
+                          backgroundColor: Color.fromRGBO(255, 179, 0, 1),
+                          child: Icon(
+                            Ionicons.map_outline,
+                            color: Colors.white,
+                            size: getScreenWidth(context) * 0.06,
+                          ),
+                        ),
+                        SizedBox(height: getScreenHeight(context) * 0.010),
+                        Text(
+                          'Campus Map',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: getScreenWidth(context) * 0.03),
+                        ),
+                      ],
                     ),
-                    Text(
-                      'Hospital Services',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                  ],
-                ),
-              ),
-              InkWell(
-                onTap: () {},
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Ionicons.briefcase_outline,
-                      color: Colors.black,
-                      size: 50,
-                    ),
-                    Text(
-                      'Career Opportunities',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                  ],
-                ),
-              ),
-              InkWell(
-                onTap: () {},
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Ionicons.book_outline,
-                      color: Colors.black,
-                      size: 50,
-                    ),
-                    Text(
-                      'Library',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                  ],
-                ),
-              ),
-              InkWell(
-                onTap: () {},
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      CupertinoIcons.group,
-                      color: Colors.black,
-                      size: 50,
-                    ),
-                    Text(
-                      'Organizations',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                  ],
-                ),
-              ),
-              InkWell(
-                onTap: () {},
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Ionicons.fast_food_outline,
-                      color: Colors.black,
-                      size: 50,
-                    ),
-                    Text(
-                      'Food',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                  ],
-                ),
-              ),
-              InkWell(
-                onTap: () {},
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Ionicons.map_outline,
-                      color: Colors.black,
-                      size: 50,
-                    ),
-                    Text(
-                      'Campus Map',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                  ],
-                ),
-              ),
-            ]),
+                  ),
+                ]),
           ),
           Container(
             color: Colors.black,
-            height: 50,
+            height: getScreenHeight(context) * 0.080,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -375,7 +470,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   'Copyright © 2023',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 16,
+                    fontSize: getScreenWidth(context) * 0.037,
                   ),
                 ),
               ],
