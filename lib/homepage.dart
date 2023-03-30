@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:tom_conn/utilities/getWH.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -30,59 +31,64 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: EdgeInsets.symmetric(
+                horizontal: getScreenWidth(context) * 0.005),
             child: TextButton(
               onPressed: () {},
               child: Text(
                 'About',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: getScreenWidth(context) * 0.03,
                   color: Colors.white,
                 ),
               ),
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: EdgeInsets.symmetric(
+                horizontal: getScreenWidth(context) * 0.005),
             child: TextButton(
               onPressed: () {},
               child: Text(
                 'Contact Us',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: getScreenWidth(context) * 0.03,
                   color: Colors.white,
                 ),
               ),
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: EdgeInsets.symmetric(
+                horizontal: getScreenWidth(context) * 0.005),
             child: TextButton(
               onPressed: () {},
               child: Text(
                 'Support',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: getScreenWidth(context) * 0.03,
                   color: Colors.white,
                 ),
               ),
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: EdgeInsets.symmetric(
+                horizontal: getScreenWidth(context) * 0.005),
             child: TextButton(
               onPressed: () {},
               child: Text(
                 'FAQs',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: getScreenWidth(context) * 0.03,
                   color: Colors.white,
                 ),
               ),
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: EdgeInsets.symmetric(
+                horizontal: getScreenWidth(context) * 0.005),
             child: TextButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/login');
@@ -90,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Text(
                 'Log In',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: getScreenWidth(context) * 0.03,
                   color: Colors.white,
                 ),
               ),
