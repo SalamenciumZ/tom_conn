@@ -1,14 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'dart:async';
 
-void main(){
+import 'package:tom_conn/first_time_use.dart';
+
+void main() {
   runApp(new LoadingPage());
 }
 
 class LoadingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Timer(
+      Duration(seconds: 5),
+      () => Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => OnboardingScreen(),
+        ),
+      ),
+    );
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -18,12 +30,10 @@ class LoadingPage extends StatelessWidget {
           ),
         ),
         child: Center(
-
-          child: Lottie.asset('assets/images/loading.json', height: 70, width: 70),
+          child:
+              Lottie.asset('assets/images/loading.json', height: 70, width: 70),
         ),
       ),
     );
   }
 }
-
-
