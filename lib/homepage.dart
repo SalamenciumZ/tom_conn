@@ -156,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         children: <Widget>[
           Container(
-            height: getScreenHeight(context) * 0.25,
+            height: getScreenHeight(context) * 0.2,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/images/ust_main_building.png'),
@@ -164,6 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
+          SizedBox(height: getScreenHeight(context) * 0.020),
           Expanded(
             child: GridView.count(
                 crossAxisCount: 4,
@@ -462,7 +463,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Container(
             color: Colors.black,
-            height: getScreenHeight(context) * 0.080,
+            height: getScreenHeight(context) * 0.10,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
