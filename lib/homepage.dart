@@ -11,13 +11,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  Color iconColor = Colors.white;
-  Color textColor = Colors.white;
-  Color textColor1 = Colors.white;
-  Color textColor2= Colors.white;
-  Color textColor3 = Colors.white;
-  Color textColor4 = Colors.white;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,151 +19,79 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.black,
         elevation: 0,
         automaticallyImplyLeading: false,
-        leading: MouseRegion(
-          onHover: (PointerEvent details) {
-            setState(() {
-              iconColor = Colors.yellow; // Change the color of the icon when it is hovered
-            });
+        leading: InkWell(
+          onTap: () {
+            _scaffoldKey.currentState!.openDrawer();
           },
-          onExit: (PointerEvent details) {
-            setState(() {
-              iconColor = Colors.white; // Reset the color of the icon when the hover ends
-            });
-          },
-          child: InkWell(
-            onTap: () {
-              _scaffoldKey.currentState!.openDrawer();
-            },
-            child: Icon(
-              Icons.menu,
-              color: iconColor,
-            ),
+          child: Icon(
+            Icons.menu,
+            color: Colors.white,
           ),
         ),
         actions: [
-          MouseRegion(
-            onHover: (PointerEvent details) {
-              setState(() {
-                textColor = Colors.yellow; // Change the text color when the mouse is hovering over the button
-              });
-            },
-            onExit: (PointerEvent details) {
-              setState(() {
-                textColor = Colors.white; // Reset the text color when the mouse leaves the button
-              });
-            },
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: TextButton(
-                onPressed: () {},
-                child: Text(
-                  'About',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: textColor,
-                  ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: TextButton(
+              onPressed: () {},
+              child: Text(
+                'About',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.white,
                 ),
               ),
             ),
           ),
-          MouseRegion(
-            onHover: (PointerEvent details){
-              setState(() {
-                textColor1 = Colors.yellow;
-              });
-            },
-            onExit: (PointerEvent details){
-              setState(() {
-                textColor1 = Colors.white;
-              });
-            },
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: TextButton(
-                onPressed: () {},
-                child: Text(
-                  'Contact Us',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: textColor1,
-                  ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: TextButton(
+              onPressed: () {},
+              child: Text(
+                'Contact Us',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.white,
                 ),
               ),
             ),
           ),
-          MouseRegion(
-            onHover: (PointerEvent details){
-              setState(() {
-                textColor2 = Colors.yellow;
-              });
-            },
-            onExit: (PointerEvent details){
-              setState(() {
-                textColor2 = Colors.white;
-              });
-            },
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: TextButton(
-                onPressed: () {},
-                child: Text(
-                  'Support',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: textColor2,
-                  ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: TextButton(
+              onPressed: () {},
+              child: Text(
+                'Support',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.white,
                 ),
               ),
             ),
           ),
-          MouseRegion(
-            onHover: (PointerEvent details){
-              setState(() {
-                textColor3 =  Colors.yellow;
-              });
-            },
-            onExit: (PointerEvent details){
-              setState(() {
-                textColor3 = Colors.white;
-              });
-            },
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: TextButton(
-                onPressed: () {},
-                child: Text(
-                  'FAQs',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: textColor3,
-                  ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: TextButton(
+              onPressed: () {},
+              child: Text(
+                'FAQs',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.white,
                 ),
               ),
             ),
           ),
-          MouseRegion(
-            onHover: (PointerEvent details){
-              setState(() {
-                textColor4 = Colors.yellow;
-              });
-            },
-            onExit: (PointerEvent details){
-              setState(() {
-                textColor4 = Colors.white;
-              });
-            },
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/login');
-                },
-                child: Text(
-                  'Log In',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: textColor4,
-                  ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/login');
+              },
+              child: Text(
+                'Log In',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -222,254 +143,218 @@ class _HomeScreenState extends State<HomeScreen> {
             child: GridView.count(crossAxisCount: 4, children: <Widget>[
               InkWell(
                 onTap: () {},
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        MdiIcons.townHall,
-                        color: Colors.black,
-                        size: 50,
-                      ),
-                      Text(
-                        'General Info',
-                        style:
-                            TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      MdiIcons.townHall,
+                      color: Colors.black,
+                      size: 50,
+                    ),
+                    Text(
+                      'General Info',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ],
                 ),
               ),
               InkWell(
                 onTap: () {},
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        LineAwesomeIcons.chalkboard_teacher,
-                        color: Colors.black,
-                        size: 50,
-                      ),
-                      Text(
-                        'Faculty and Staff',
-                        style:
-                            TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      LineAwesomeIcons.chalkboard_teacher,
+                      color: Colors.black,
+                      size: 50,
+                    ),
+                    Text(
+                      'Faculty and Staff',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ],
                 ),
               ),
               InkWell(
                 onTap: () {},
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        MdiIcons.accountSchoolOutline,
-                        color: Colors.black,
-                        size: 50,
-                      ),
-                      Text(
-                        'Alumni',
-                        style:
-                            TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      MdiIcons.accountSchoolOutline,
+                      color: Colors.black,
+                      size: 50,
+                    ),
+                    Text(
+                      'Alumni',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ],
                 ),
               ),
               InkWell(
                 onTap: () {},
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Ionicons.search_outline,
-                        color: Colors.black,
-                        size: 50,
-                      ),
-                      Text(
-                        'Research Projects',
-                        style:
-                            TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Ionicons.search_outline,
+                      color: Colors.black,
+                      size: 50,
+                    ),
+                    Text(
+                      'Research Projects',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ],
                 ),
               ),
               InkWell(
                 onTap: () {},
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Ionicons.newspaper_outline,
-                        color: Colors.black,
-                        size: 50,
-                      ),
-                      Text(
-                        'News/Events',
-                        style:
-                            TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                        textAlign: TextAlign.center,
-                      )
-                    ],
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Ionicons.newspaper_outline,
+                      color: Colors.black,
+                      size: 50,
+                    ),
+                    Text(
+                      'News/Events',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    )
+                  ],
                 ),
               ),
               InkWell(
                 onTap: () {},
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        CupertinoIcons.shopping_cart,
-                        color: Colors.black,
-                        size: 50,
-                      ),
-                      Text(
-                        'Shop',
-                        style:
-                            TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      CupertinoIcons.shopping_cart,
+                      color: Colors.black,
+                      size: 50,
+                    ),
+                    Text(
+                      'Shop',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ],
                 ),
               ),
               InkWell(
                 onTap: () {},
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        LineAwesomeIcons.heartbeat,
-                        color: Colors.black,
-                        size: 50,
-                      ),
-                      Text(
-                        'Hospital Services',
-                        style:
-                            TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      LineAwesomeIcons.heartbeat,
+                      color: Colors.black,
+                      size: 50,
+                    ),
+                    Text(
+                      'Hospital Services',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ],
                 ),
               ),
               InkWell(
                 onTap: () {},
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Ionicons.briefcase_outline,
-                        color: Colors.black,
-                        size: 50,
-                      ),
-                      Text(
-                        'Career Opportunities',
-                        style:
-                            TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Ionicons.briefcase_outline,
+                      color: Colors.black,
+                      size: 50,
+                    ),
+                    Text(
+                      'Career Opportunities',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ],
                 ),
               ),
               InkWell(
                 onTap: () {},
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Ionicons.book_outline,
-                        color: Colors.black,
-                        size: 50,
-                      ),
-                      Text(
-                        'Library',
-                        style:
-                            TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Ionicons.book_outline,
+                      color: Colors.black,
+                      size: 50,
+                    ),
+                    Text(
+                      'Library',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ],
                 ),
               ),
               InkWell(
                 onTap: () {},
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        CupertinoIcons.group,
-                        color: Colors.black,
-                        size: 50,
-                      ),
-                      Text(
-                        'Organizations',
-                        style:
-                            TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      CupertinoIcons.group,
+                      color: Colors.black,
+                      size: 50,
+                    ),
+                    Text(
+                      'Organizations',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ],
                 ),
               ),
               InkWell(
                 onTap: () {},
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Ionicons.fast_food_outline,
-                        color: Colors.black,
-                        size: 50,
-                      ),
-                      Text(
-                        'Food',
-                        style:
-                            TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Ionicons.fast_food_outline,
+                      color: Colors.black,
+                      size: 50,
+                    ),
+                    Text(
+                      'Food',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ],
                 ),
               ),
               InkWell(
                 onTap: () {},
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Ionicons.map_outline,
-                        color: Colors.black,
-                        size: 50,
-                      ),
-                      Text(
-                        'Campus Map',
-                        style:
-                            TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Ionicons.map_outline,
+                      color: Colors.black,
+                      size: 50,
+                    ),
+                    Text(
+                      'Campus Map',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ],
                 ),
               ),
             ]),
