@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:lottie/lottie.dart';
+import 'package:tom_conn/utilities/getWH.dart';
 
 class settings extends StatefulWidget {
   const settings({Key? key}) : super(key: key);
@@ -43,10 +44,12 @@ class _settingsState extends State<settings> {
             children: [
               Text(
                 "Account Settings",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                    fontSize: getScreenWidth(context) * 0.06,
+                    fontWeight: FontWeight.w500),
               ),
               SizedBox(
-                height: 15,
+                height: getScreenHeight(context) * 0.0025,
               ),
               Center(
                 child: Stack(
@@ -75,8 +78,8 @@ class _settingsState extends State<settings> {
                       bottom: 0,
                       right: 0,
                       child: Container(
-                        height: 40,
-                        width: 40,
+                        height: getScreenHeight(context) * 0.09,
+                        width: getScreenWidth(context) * 0.09,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
@@ -92,14 +95,14 @@ class _settingsState extends State<settings> {
                 ),
               ),
               SizedBox(
-                height: 35,
+                height: getScreenHeight(context) * 0.0035,
               ),
               buildTextField("First Name", "Juan", true),
               buildTextField("Last Name", "Dela Cruz", false),
               buildTextField("Affiliation", "Student", false),
               buildTextField("College", "CICS", false),
               SizedBox(
-                height: 35,
+                height: getScreenHeight(context) * 0.0035,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -156,7 +159,7 @@ class _settingsState extends State<settings> {
 
   Widget buildTextField(String labelText, String placeholder, bool isObscure) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 25.0),
+      padding: const EdgeInsets.only(bottom: 25),
       child: TextField(
         obscureText: isObscure ? showPassword : false,
         decoration: InputDecoration(
@@ -176,7 +179,7 @@ class _settingsState extends State<settings> {
           floatingLabelBehavior: FloatingLabelBehavior.always,
           hintText: placeholder,
           hintStyle: TextStyle(
-            fontSize: 16,
+            fontSize: getScreenWidth(context) * 0.039,
             fontWeight: FontWeight.bold,
             color: Color(0xFF857979),
           ),

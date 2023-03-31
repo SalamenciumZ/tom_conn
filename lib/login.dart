@@ -30,7 +30,7 @@ class _LoginState extends State<Login> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
-                        'assets/images/tiger_logo.png',
+                        'assets/images/tomasino_connect_logo.png',
                         height: getScreenHeight(context) * 0.3,
                         width: getScreenWidth(context) * 0.4,
                         fit: BoxFit.fitHeight,
@@ -43,7 +43,7 @@ class _LoginState extends State<Login> {
                                 fontSize: getScreenWidth(context) * 0.055,
                                 fontFamily: 'Neo-Syber',
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white),
+                                color: Colors.black),
                           ),
                           Text(
                             'CONNECT',
@@ -51,7 +51,7 @@ class _LoginState extends State<Login> {
                               fontSize: getScreenWidth(context) * 0.055,
                               fontFamily: 'Neo-Syber',
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                           )
                         ],
