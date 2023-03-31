@@ -71,4 +71,7 @@ flutter:
     - family: Satoshi
       fonts:
         - asset: assets/fonts/Satoshi-Variable.ttf
+    - family: Neo-Syber
+      fonts:
+        - asset: assets/fonts/Neo-Syber-Italic.ttf
 

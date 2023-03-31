@@ -26,15 +26,39 @@ class _LoginState extends State<Login> {
             child: Center(
               child: Column(
                 children: [
-                  SizedBox(height: getScreenHeight(context) * 0.060),
-                  AutoSizeText(
-                    "TOMASINO CONNECT",
-                    style: TextStyle(
-                      fontSize: getScreenWidth(context) * 0.075,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/images/tiger_logo.png',
+                        height: getScreenHeight(context) * 0.3,
+                        width: getScreenWidth(context) * 0.4,
+                        fit: BoxFit.fitHeight,
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            'TOMASINO',
+                            style: TextStyle(
+                                fontSize: getScreenWidth(context) * 0.055,
+                                fontFamily: 'Neo-Syber',
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                          Text(
+                            'CONNECT',
+                            style: TextStyle(
+                              fontSize: getScreenWidth(context) * 0.055,
+                              fontFamily: 'Neo-Syber',
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          )
+                        ],
+                      )
+                    ],
                   ),
-                  SizedBox(height: getScreenHeight(context) * 0.060),
+                  SizedBox(height: getScreenHeight(context) * 0.00001),
                   AutoSizeText(
                     "Start Connecting!",
                     style: TextStyle(
@@ -42,7 +66,7 @@ class _LoginState extends State<Login> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: getScreenHeight(context) * 0.060),
+                  SizedBox(height: getScreenHeight(context) * 0.036),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 30.0),
                     child: TextField(
@@ -60,7 +84,7 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                   ),
-                  SizedBox(height: getScreenHeight(context) * 0.040),
+                  SizedBox(height: getScreenHeight(context) * 0.020),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 30.0),
                     child: TextField(
@@ -78,7 +102,7 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                   ),
-                  SizedBox(height: getScreenHeight(context) * 0.060),
+                  SizedBox(height: getScreenHeight(context) * 0.030),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         minimumSize: Size(340, 60),
