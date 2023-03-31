@@ -4,6 +4,7 @@ import 'package:tom_conn/first_time_use.dart';
 import 'package:tom_conn/homepage.dart';
 import 'package:tom_conn/login.dart';
 import 'package:tom_conn/loading_screen.dart';
+import 'package:tom_conn/settings.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => Login(),
         '/loading': (context) => LoadingPage(),
         '/onboarding': (context) => OnboardingScreen(),
+        '/settings': (context) => settings(),
       },
     );
   }
