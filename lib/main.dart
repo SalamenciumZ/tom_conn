@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tom_conn/first_time_use.dart';
 import 'package:tom_conn/login.dart';
 import 'package:tom_conn/loading_screen.dart';
+import 'package:tom_conn/settings.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
             .copyWith(primary: Color.fromRGBO(254, 192, 15, 1)),
       ),
       debugShowCheckedModeBanner: false,
-      home: OnboardingScreen(),
+      home: settings(),
       routes: {
         '/login': (context) => Login(),
       },
