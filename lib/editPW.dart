@@ -2,17 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:tom_conn/settingsList.dart';
-import 'package:tom_conn/utilities/getWH.dart';
 
-class settings extends StatefulWidget {
-  const settings({Key? key}) : super(key: key);
+class editPW extends StatefulWidget {
+  const editPW({Key? key}) : super(key: key);
 
   @override
-  State<settings> createState() => _settingsState();
+  State<editPW> createState() => _editPass();
 }
 
-class _settingsState extends State<settings> {
+class _editPass extends State<editPW> {
   bool showPassword = false;
+  TextEditingController cPasswordController = TextEditingController();
+  TextEditingController nPasswordController = TextEditingController();
+  TextEditingController cnPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -48,66 +50,17 @@ class _settingsState extends State<settings> {
           child: ListView(
             children: [
               Text(
-                "Account Settings",
-                style: TextStyle(
-                    fontSize: getScreenWidth(context) * 0.06,
-                    fontWeight: FontWeight.w500),
-              ),
-              SizedBox( //controls the size of the background of the avatar
-                height: getScreenHeight(context) * 0.0025,
-              ),
-              Center( //the avatar. want to put fixed/max image size to avoid
-                child: Stack( //problems with the sized box above
-                  children: [
-                    Container(
-                      width: 130,
-                      height: 130,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                            width: 4,
-                            color: Theme.of(context).scaffoldBackgroundColor),
-                        boxShadow: [
-                          BoxShadow(
-                              spreadRadius: 2,
-                              blurRadius: 10,
-                              color: Color(0xFF121212).withOpacity(0.1),
-                              offset: Offset(0, 10))
-                        ],
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: AssetImage("assets/images/default_avatar.png"),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      right: 0,
-                      child: Container(
-                        height: getScreenHeight(context) * 0.09,
-                        width: getScreenWidth(context) * 0.09,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            width: 4,
-                            color: Theme.of(context).scaffoldBackgroundColor,
-                          ),
-                          color: Color(0xFFfec00f),
-                        ),
-                        child: Icon(Icons.edit, color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
+                "Change Password",
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
               ),
               SizedBox(
-                height: getScreenHeight(context) * 0.0035,
+                height: 35,
               ),
-              buildTextField("First Name", "Juan", false),
-              buildTextField("Last Name", "Dela Cruz", false),
-              buildTextField("Affiliation", "Student", false),
-              buildTextField("College", "CICS", false),
+              buildTextField(cPasswordController, "Current Password", "********", true),
+              buildTextField(nPasswordController, "New Password", "********", true),
+              buildTextField(cnPasswordController, "Repeat New Password", "********", true),
               SizedBox(
-                height: getScreenHeight(context) * 0.0035,
+                height: 35,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -118,8 +71,15 @@ class _settingsState extends State<settings> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                     ),
-                    onPressed: () {},
-                    child: Text("CANCEL",
+                    onPressed: () {
+                      print(cPasswordController.text);
+                      print(nPasswordController.text);
+                      print(cnPasswordController.text);
+                      cPasswordController.clear();
+                      nPasswordController.clear();
+                      cnPasswordController.clear();
+                    },
+                    child: Text("CLEAR",
                         style: TextStyle(
                             fontSize: 14,
                             letterSpacing: 2.2,
@@ -142,7 +102,7 @@ class _settingsState extends State<settings> {
                     ),
                   )
                 ],
-              ),
+              )
             ],
           ),
         ),
@@ -162,11 +122,12 @@ class _settingsState extends State<settings> {
     );
   }
 
-  Widget buildTextField(String labelText, String placeholder, bool isObscure) {
+  Widget buildTextField(TextEditingController controller, labelText, String placeholder, bool isObscure) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 25),
+      padding: const EdgeInsets.only(bottom: 25.0),
       child: TextField(
         obscureText: isObscure ? showPassword : false,
+        controller: controller,
         decoration: InputDecoration(
           suffixIcon: isObscure
               ? IconButton(
@@ -184,7 +145,7 @@ class _settingsState extends State<settings> {
           floatingLabelBehavior: FloatingLabelBehavior.always,
           hintText: placeholder,
           hintStyle: TextStyle(
-            fontSize: getScreenWidth(context) * 0.039,
+            fontSize: 16,
             fontWeight: FontWeight.bold,
             color: Color(0xFF857979),
           ),
