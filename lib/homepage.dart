@@ -1,22 +1,26 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:tom_conn/utilities/getWH.dart';
-import 'package:round_icon/round_icon.dart';
 
 class HomeScreen extends StatefulWidget {
+  HomeScreen({super.key});
+
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-
-
 class _HomeScreenState extends State<HomeScreen> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final user = FirebaseAuth.instance.currentUser!;
 
-  bool _showListView = false;
+  void signOut() {
+    FirebaseAuth.instance.signOut();
+  }
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -97,10 +101,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 horizontal: getScreenWidth(context) * 0.005),
             child: TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/login');
+                signOut();
+                //Navigator.pushNamed(context, '/login');
               },
               child: Text(
-                'Log In',
+                'Log Out',
                 style: TextStyle(
                   fontSize: getScreenWidth(context) * 0.03,
                   color: Colors.white,
@@ -427,14 +432,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           radius: getScreenWidth(context) * 0.07,
                           backgroundColor: Color.fromRGBO(255, 179, 0, 1),
                           child: Icon(
-                            CupertinoIcons.group,
+                            Ionicons.fast_food_outline,
                             color: Colors.white,
                             size: getScreenWidth(context) * 0.06,
                           ),
                         ),
                         SizedBox(height: getScreenHeight(context) * 0.010),
                         Text(
-                          'Organizations',
+                          'Food',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: getScreenWidth(context) * 0.03),
@@ -442,9 +447,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
-
-
-
                   InkWell(
                     onTap: () {},
                     child: Column(
@@ -492,4 +494,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-

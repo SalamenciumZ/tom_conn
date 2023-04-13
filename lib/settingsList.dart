@@ -2,9 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
+import 'package:tom_conn/aboutUs.dart';
 import 'package:tom_conn/editPW.dart';
 import 'package:tom_conn/homepage.dart';
 import 'package:tom_conn/settings.dart';
+import 'package:tom_conn/utilities/getWH.dart';
+import 'package:tom_conn/contactUs.dart';
 
 class settingsList extends StatefulWidget {
   const settingsList({Key? key}) : super(key: key);
@@ -49,11 +52,14 @@ class _settingsListState extends State<settingsList> {
               "Settings",
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
             ),
-            SizedBox( //controls the size of the background of the avatar
+            SizedBox(
+              //controls the size of the background of the avatar
               height: 15,
             ),
-            Center( //the avatar. want to put fixed/max image size to avoid
-              child: Stack( //problems with the sized box above
+            Center(
+              //the avatar. want to put fixed/max image size to avoid
+              child: Stack(
+                //problems with the sized box above
                 children: [
                   Container(
                     width: 130,
@@ -78,15 +84,17 @@ class _settingsListState extends State<settingsList> {
                 ],
               ),
             ),
-            SettingsGroup(title: 'ACCOUNT',
-                children: <Widget>[
-                  buildAccount(),
-                  buildPassword(),
-                  buildLogout(),
-                ],
+            SettingsGroup(
+              title: 'ACCOUNT',
+              children: <Widget>[
+                buildAccount(),
+                buildPassword(),
+                buildLogout(),
+              ],
             ),
             const SizedBox(height: 32),
-            SettingsGroup(title: 'INFO',
+            SettingsGroup(
+              title: 'INFO',
               children: <Widget>[
                 buildDisclaimer(),
                 buildAboutUs(),
@@ -100,20 +108,45 @@ class _settingsListState extends State<settingsList> {
         backgroundColor: Color(0xFF121212),
         color: Colors.white,
         activeColor: Color(0xFFfec00f),
-        gap: 4,
+        gap: 1,
         tabs: [
-          GButton(icon: Icons.settings, text: 'Settings'),
-          GButton(icon: Icons.copyright, text: 'Disclaimer'),
-          GButton(icon: Icons.info, text: 'About Us'),
-          GButton(icon: Icons.phone, text: 'Contact Us'),
+          GButton(icon: Icons.settings, text: 'Settings',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const settingsList()),
+                );
+              }),
+          GButton(icon: Icons.copyright, text: 'Disclaimer',
+              onPressed: () {
+                _showDisclaimer();
+              }),
+          // GButton(icon: Icons.info, text: 'Home',
+          //     onPressed: () {
+          //       Navigator.push(
+          //         context,
+          //         MaterialPageRoute(builder: (context) => HomeScreen()),
+          //       );
+          //     }),
+          GButton(icon: Icons.info, text: 'About Us',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => aboutUs()),
+                );
+              }),
+          GButton(icon: Icons.phone, text: 'Contact Us',
+              onPressed: () {
+
+              }),
         ],
       ),
     );
   }
 
-  Widget buildTextField(String labelText, String placeholder, bool isObscure) { //the TextFIeld for the inputs
+  Widget buildTextField(String labelText, String placeholder, bool isObscure) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 25.0),
+      padding: const EdgeInsets.only(bottom: 25),
       child: TextField(
         obscureText: isObscure ? showPassword : false,
         decoration: InputDecoration(
@@ -133,7 +166,7 @@ class _settingsListState extends State<settingsList> {
           floatingLabelBehavior: FloatingLabelBehavior.always,
           hintText: placeholder,
           hintStyle: TextStyle(
-            fontSize: 16,
+            fontSize: getScreenWidth(context) * 0.039,
             fontWeight: FontWeight.bold,
             color: Color(0xFF857979),
           ),
@@ -143,101 +176,129 @@ class _settingsListState extends State<settingsList> {
   }
 
   Widget buildLogout() => SimpleSettingsTile(
-    leading: IconButton(
-      icon: const Icon(Icons.logout),
-      color: Colors.blueAccent,
-      onPressed: () {
-        //Do something
-      },
-    ),
-      title: 'Logout',
-  subtitle: '',
-  onTap: () {
-      //Do something or logout
-
-},
-);
+        leading: IconButton(
+          icon: const Icon(Icons.logout),
+          color: Colors.blueAccent,
+          onPressed: () {
+            //Do something
+          },
+        ),
+        title: 'Logout',
+        subtitle: '',
+        onTap: () {
+          //Do something or logout
+        },
+      );
 
   Widget buildAccount() => SimpleSettingsTile(
-    leading: IconButton(
-      icon: const Icon(Icons.person),
-      color: Colors.green,
-      onPressed: () {
-        //Do something
-      },
-    ),
-    title: 'Account Settings',
-    subtitle: 'Name, Affiliation, College',
-    //Add container child to put '>' icon in the list
-    onTap: () {
-      //Do something or logout
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const settings()),
+        leading: IconButton(
+          icon: const Icon(Icons.person),
+          color: Colors.green,
+          onPressed: () {
+            //Do something
+          },
+        ),
+        title: 'Account Settings',
+        subtitle: 'Name, Affiliation, College',
+        //Add container child to put '>' icon in the list
+        onTap: () {
+          //Do something or logout
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const settings()),
+          );
+        },
       );
-    },
-  );
 
   Widget buildPassword() => SimpleSettingsTile(
-    leading: IconButton(
-      icon: const Icon(Icons.password),
-      color: Colors.black,
-      onPressed: () {
-        //Do something
-      },
-    ),
-    title: 'Change Password',
-    subtitle: '',
-    onTap: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const editPW()),
+        leading: IconButton(
+          icon: const Icon(Icons.password),
+          color: Colors.black,
+          onPressed: () {
+            //Do something
+          },
+        ),
+        title: 'Change Password',
+        subtitle: '',
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const editPW()),
+          );
+        },
       );
-    },
-  );
 
   Widget buildDisclaimer() => SimpleSettingsTile(
-    leading: IconButton(
-      icon: const Icon(Icons.copyright),
-      color: Colors.deepOrange,
-      onPressed: () {
-        //Do something
-      },
-    ),
-    title: 'Disclaimer',
-    subtitle: '',
-    onTap: () {
-      //Do something or logout
-    },
-  );
+        leading: IconButton(
+          icon: const Icon(Icons.copyright),
+          color: Colors.deepOrange,
+          onPressed: () {
+          },
+        ),
+        title: 'Disclaimer',
+        subtitle: '',
+        onTap: () {
+          _showDisclaimer();
+          print("object");
+        },
+      );
 
   Widget buildAboutUs() => SimpleSettingsTile(
-    leading: IconButton(
-      icon: const Icon(Icons.info),
-      color: Colors.grey,
-      onPressed: () {
-        //Do something
-      },
-    ),
-    title: 'About Us',
-    subtitle: '',
-    onTap: () {
-      //Do something or logout
-    },
-  );
+        leading: IconButton(
+          icon: const Icon(Icons.info),
+          color: Colors.grey,
+          onPressed: () {},
+        ),
+        title: 'About Us',
+        subtitle: '',
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const aboutUs()),
+          );
+        },
+      );
 
   Widget buildContactUs() => SimpleSettingsTile(
-    leading: IconButton(
-      icon: const Icon(Icons.phone),
-      color: Colors.purple,
-      onPressed: () {
-        //Do something
+        leading: IconButton(
+          icon: const Icon(Icons.phone),
+          color: Colors.purple,
+          onPressed: () {
+            //Do something
+          },
+        ),
+        title: 'Contact Us',
+        subtitle: '',
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const contactUs()),
+          );
+        },
+      );
+
+  void _showDisclaimer() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Disclaimer"),
+          content: Text(
+              "Tomasino Connect is not directly connected or affiliated"
+              "with the University of Santo Tomas. The application serves the purpose of connecting"
+              "the UST community as well as uniting all the found functionalities of multiple"
+              "UST-related websites. This also comes with a map that will guide the user when"
+              "navigating around the campus."),
+          actions: [
+            MaterialButton(
+              onPressed: () {
+                Navigator.of(context, rootNavigator: true).pop('dialog');
+              },
+              child: Text("Understood"),
+            ),
+          ],
+        );
       },
-    ),
-    title: 'Contact Us',
-    subtitle: '',
-    onTap: () {
-      //Do something or logout
-    },
-  );
+    );
+  }
 }
