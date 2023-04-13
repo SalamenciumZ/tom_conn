@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tom_conn/utilities/getWH.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -9,9 +10,19 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  //controller
+  final _referenceNo = TextEditingController();
+  final _password = TextEditingController();
+
+  Future signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _referenceNo.text.trim(), password: _password.text.trim());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: <Widget>[
           Container(
@@ -70,8 +81,9 @@ class _LoginState extends State<Login> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 30.0),
                     child: TextField(
+                      controller: _referenceNo,
                       decoration: InputDecoration(
-                        hintText: 'USERNAME',
+                        hintText: 'REFERENCE NO.',
                         prefixIcon: Icon(CupertinoIcons.person_fill),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
@@ -88,6 +100,7 @@ class _LoginState extends State<Login> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 30.0),
                     child: TextField(
+                      controller: _password,
                       decoration: InputDecoration(
                         hintText: 'PASSWORD',
                         prefixIcon: Icon(CupertinoIcons.lock_fill),
@@ -135,7 +148,7 @@ class _LoginState extends State<Login> {
                         child: Text(
                           'guest.',
                           style: TextStyle(
-                            color: Color.fromRGBO(255, 179, 0, 1),
+                            color: Color.fromRGBO(0, 161, 228, 1),
                             fontWeight: FontWeight.bold,
                             fontSize: getScreenWidth(context) * 0.035,
                           ),

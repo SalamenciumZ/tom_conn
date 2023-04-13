@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1063572891256",
+    "project_id": "tomconn-8c66d",
+    "storage_bucket": "tomconn-8c66d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1063572891256:android:29061836028e1e29fc6f8d",
+        "android_client_info": {
+          "package_name": "com.example.tom_conn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1063572891256-s0oh21p0hnb639v26intg4um6jhssiek.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCseTjWTCOKJNHWWJsSA0D9A7fn-IDQDlY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1063572891256-s0oh21p0hnb639v26intg4um6jhssiek.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
