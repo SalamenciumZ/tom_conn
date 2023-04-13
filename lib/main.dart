@@ -8,15 +8,17 @@ import 'package:tom_conn/settings.dart';
 import 'package:tom_conn/settingsList.dart';
 import 'package:tom_conn/editPW.dart';
 import 'package:firebase_core/firebase_core.dart';
-//import 'firebase_options.dart';
+import 'package:tom_conn/utilities/auth_page.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  //await Firebase.initializeApp(options: DefaultFirebaseOptions());
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  MyApp({super.key});
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final _scaffoldK = GlobalKey<ScaffoldMessengerState>();
 
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
       scaffoldMessengerKey: _scaffoldK,
       title: 'Header Example',
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: AuthPage(),
       routes: {
         '/home': (context) => HomeScreen(),
         '/login': (context) => Login(),
