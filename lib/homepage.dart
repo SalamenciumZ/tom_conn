@@ -5,8 +5,6 @@ import 'package:ionicons/ionicons.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:tom_conn/utilities/getWH.dart';
-import 'package:round_icon/round_icon.dart';
-import 'package:tom_conn/utilities/auth_page.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});

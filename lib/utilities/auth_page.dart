@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:tom_conn/first_time_use.dart';
 import 'package:tom_conn/homepage.dart';
 import 'package:tom_conn/login.dart';
 
@@ -24,7 +23,7 @@ class _AuthPageState extends State<AuthPage> {
           }
           //user is not logged in
           else {
-            return OnboardingScreen();
+            return Login();
           }
         },
       ),

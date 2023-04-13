@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tom_conn/utilities/getWH.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:tom_conn/utilities/auth_page.dart';
 
 class Login extends StatefulWidget {
   Login({super.key});
