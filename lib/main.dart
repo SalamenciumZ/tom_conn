@@ -5,8 +5,16 @@ import 'package:tom_conn/homepage.dart';
 import 'package:tom_conn/login.dart';
 import 'package:tom_conn/loading_screen.dart';
 import 'package:tom_conn/settings.dart';
+import 'package:tom_conn/settingsList.dart';
+import 'package:tom_conn/editPW.dart';
+import 'package:firebase_core/firebase_core.dart';
+//import 'firebase_options.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  //await Firebase.initializeApp(options: DefaultFirebaseOptions());
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -22,7 +30,9 @@ class MyApp extends StatelessWidget {
         '/login': (context) => Login(),
         '/loading': (context) => LoadingPage(),
         '/onboarding': (context) => OnboardingScreen(),
-        '/settings': (context) => settings(),
+        '/settings': (context) => const settingsList(),
+        '/accSettings': (context) => settings(),
+        '/editPW': (context) => editPW(),
       },
     );
   }
