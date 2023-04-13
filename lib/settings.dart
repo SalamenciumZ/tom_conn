@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:tom_conn/aboutUs.dart';
+import 'package:tom_conn/homepage.dart';
 import 'package:tom_conn/settingsList.dart';
 import 'package:tom_conn/utilities/getWH.dart';
 
@@ -151,12 +153,37 @@ class _settingsState extends State<settings> {
         backgroundColor: Color(0xFF121212),
         color: Colors.white,
         activeColor: Color(0xFFfec00f),
-        gap: 4,
+        gap: 1,
         tabs: [
-          GButton(icon: Icons.settings, text: 'Settings'),
-          GButton(icon: Icons.copyright, text: 'Disclaimer'),
-          GButton(icon: Icons.info, text: 'About Us'),
-          GButton(icon: Icons.phone, text: 'Contact Us'),
+          GButton(icon: Icons.settings, text: 'Settings',
+              onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const settingsList()),
+            );
+          }),
+          GButton(icon: Icons.copyright, text: 'Disclaimer',
+          onPressed: () {
+
+          }),
+          // GButton(icon: Icons.info, text: 'Home',
+          //     onPressed: () {
+          //       Navigator.push(
+          //         context,
+          //         MaterialPageRoute(builder: (context) => HomeScreen()),
+          //       );
+          //     }),
+          GButton(icon: Icons.info, text: 'About Us',
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => aboutUs()),
+            );
+          }),
+          GButton(icon: Icons.phone, text: 'Contact Us',
+          onPressed: () {
+
+          }),
         ],
       ),
     );

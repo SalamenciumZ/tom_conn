@@ -18,10 +18,13 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final _scaffoldK = GlobalKey<ScaffoldMessengerState>();
+
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scaffoldMessengerKey: _scaffoldK,
       title: 'Header Example',
       debugShowCheckedModeBanner: false,
       home: HomeScreen(),
