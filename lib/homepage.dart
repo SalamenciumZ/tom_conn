@@ -11,8 +11,13 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
+
+
 class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  bool _showListView = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -422,14 +427,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           radius: getScreenWidth(context) * 0.07,
                           backgroundColor: Color.fromRGBO(255, 179, 0, 1),
                           child: Icon(
-                            Ionicons.fast_food_outline,
+                            CupertinoIcons.group,
                             color: Colors.white,
                             size: getScreenWidth(context) * 0.06,
                           ),
                         ),
                         SizedBox(height: getScreenHeight(context) * 0.010),
                         Text(
-                          'Food',
+                          'Organizations',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: getScreenWidth(context) * 0.03),
@@ -437,6 +442,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
+
+
+
                   InkWell(
                     onTap: () {},
                     child: Column(
@@ -484,3 +492,4 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
