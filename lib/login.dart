@@ -3,20 +3,65 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tom_conn/utilities/getWH.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:tom_conn/utilities/auth_page.dart';
 
 class Login extends StatefulWidget {
+  Login({super.key});
+
   @override
-  _LoginState createState() => _LoginState();
+  State<Login> createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
   //controller
-  final _referenceNo = TextEditingController();
-  final _password = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
-  Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _referenceNo.text.trim(), password: _password.text.trim());
+  void signIn() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+      Navigator.pop(context);
+    } on FirebaseException catch (e) {
+      Navigator.pop(context);
+      if (e.code == 'user-not-found') {
+        wrongEmail();
+      } else if (e.code == 'wrong-password') {
+        wrongPW();
+      }
+    }
+  }
+
+  void wrongEmail() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Incorrect Email!'),
+        );
+      },
+    );
+  }
+
+  void wrongPW() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Incorrect Password!'),
+        );
+      },
+    );
   }
 
   @override
@@ -81,9 +126,9 @@ class _LoginState extends State<Login> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 30.0),
                     child: TextField(
-                      controller: _referenceNo,
+                      controller: emailController,
                       decoration: InputDecoration(
-                        hintText: 'REFERENCE NO.',
+                        hintText: 'UST EMAIL',
                         prefixIcon: Icon(CupertinoIcons.person_fill),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
@@ -100,7 +145,8 @@ class _LoginState extends State<Login> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 30.0),
                     child: TextField(
-                      controller: _password,
+                      controller: passwordController,
+                      obscureText: true,
                       decoration: InputDecoration(
                         hintText: 'PASSWORD',
                         prefixIcon: Icon(CupertinoIcons.lock_fill),
@@ -120,7 +166,9 @@ class _LoginState extends State<Login> {
                     style: ElevatedButton.styleFrom(
                         minimumSize: Size(340, 60),
                         backgroundColor: Color.fromRGBO(255, 179, 0, 1)),
-                    onPressed: () {},
+                    onPressed: () {
+                      signIn();
+                    },
                     child: Text(
                       "LOGIN",
                       style: TextStyle(
