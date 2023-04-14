@@ -55,11 +55,14 @@ class _settingsState extends State<settings> {
                     fontSize: getScreenWidth(context) * 0.06,
                     fontWeight: FontWeight.w500),
               ),
-              SizedBox( //controls the size of the background of the avatar
+              SizedBox(
+                //controls the size of the background of the avatar
                 height: getScreenHeight(context) * 0.0025,
               ),
-              Center( //the avatar. want to put fixed/max image size to avoid
-                child: Stack( //problems with the sized box above
+              Center(
+                //the avatar. want to put fixed/max image size to avoid
+                child: Stack(
+                  //problems with the sized box above
                   children: [
                     Container(
                       width: 130,
@@ -150,40 +153,37 @@ class _settingsState extends State<settings> {
         ),
       ),
       bottomNavigationBar: GNav(
+        selectedIndex: 1,
         backgroundColor: Color(0xFF121212),
         color: Colors.white,
         activeColor: Color(0xFFfec00f),
-        gap: 1,
+        gap: 10,
+        tabMargin: EdgeInsets.only(left: 10, right: 10),
         tabs: [
-          GButton(icon: Icons.settings, text: 'Settings',
+          GButton(
+              icon: Icons.home,
+              text: 'Home',
               onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const settingsList()),
-            );
-          }),
-          GButton(icon: Icons.copyright, text: 'Disclaimer',
-          onPressed: () {
-
-          }),
-          // GButton(icon: Icons.info, text: 'Home',
-          //     onPressed: () {
-          //       Navigator.push(
-          //         context,
-          //         MaterialPageRoute(builder: (context) => HomeScreen()),
-          //       );
-          //     }),
-          GButton(icon: Icons.info, text: 'About Us',
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => aboutUs()),
-            );
-          }),
-          GButton(icon: Icons.phone, text: 'Contact Us',
-          onPressed: () {
-
-          }),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              }),
+          GButton(
+              icon: Icons.settings,
+              text: 'Settings',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const settingsList()),
+                );
+              }),
+          GButton(
+              icon: Icons.logout,
+              text: 'Log Out',
+              onPressed: () {
+                _confirmLogout();
+              }),
         ],
       ),
     );
@@ -217,6 +217,33 @@ class _settingsState extends State<settings> {
           ),
         ),
       ),
+    );
+  }
+
+  void _confirmLogout() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Confirm Log Out"),
+          content: Text(
+              "Do you want to log out?"),
+          actions: [
+            MaterialButton(
+              onPressed: () {
+                Navigator.of(context, rootNavigator: true).pop('dialog');
+              },
+              child: Text("Yes"),
+            ),
+            MaterialButton(
+              onPressed: () {
+                Navigator.of(context, rootNavigator: true).pop('dialog');
+              },
+              child: Text("Cancel"),
+            ),
+          ],
+        );
+      },
     );
   }
 }

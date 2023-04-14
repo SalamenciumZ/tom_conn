@@ -160,40 +160,60 @@ class _contactUs extends State<contactUs> {
         ),
       ),
       bottomNavigationBar: GNav(
+        selectedIndex: 1,
         backgroundColor: Color(0xFF121212),
         color: Colors.white,
         activeColor: Color(0xFFfec00f),
-        gap: 1,
+        gap: 10,
+        tabMargin: EdgeInsets.only(left: 10, right: 10),
         tabs: [
-          GButton(
-              icon: Icons.settings,
-              text: 'Settings',
+          GButton(icon: Icons.home, text: 'Home',
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const settings()),
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
                 );
               }),
-          GButton(
-              icon: Icons.copyright,
-              text: 'Disclaimer',
+          GButton(icon: Icons.settings, text: 'Settings',
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const settingsList()),
                 );
               }),
-          // GButton(icon: Icons.info, text: 'Home',
-          //     onPressed: () {
-          //       Navigator.push(
-          //         context,
-          //         MaterialPageRoute(builder: (context) => HomeScreen()),
-          //       );
-          //     }),
-          GButton(icon: Icons.info, text: 'About Us', onPressed: () {}),
-          GButton(icon: Icons.phone, text: 'Contact Us', onPressed: () {}),
+          GButton(icon: Icons.logout, text: 'Log Out',
+              onPressed: () {
+                _confirmLogout();
+              }),
         ],
       ),
+    );
+  }
+
+  void _confirmLogout() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Confirm Log Out"),
+          content: Text(
+              "Do you want to log out?"),
+          actions: [
+            MaterialButton(
+              onPressed: () {
+                Navigator.of(context, rootNavigator: true).pop('dialog');
+              },
+              child: Text("Yes"),
+            ),
+            MaterialButton(
+              onPressed: () {
+                Navigator.of(context, rootNavigator: true).pop('dialog');
+              },
+              child: Text("Cancel"),
+            ),
+          ],
+        );
+      },
     );
   }
 }
