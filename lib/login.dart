@@ -20,7 +20,7 @@ class _LoginState extends State<Login> {
     showDialog(
       context: context,
       builder: (context) {
-        return Center(
+        return const Center(
           child: CircularProgressIndicator(),
         );
       },
@@ -45,7 +45,7 @@ class _LoginState extends State<Login> {
     showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
+        return const AlertDialog(
           title: Text('Incorrect Email!'),
         );
       },
@@ -56,7 +56,7 @@ class _LoginState extends State<Login> {
     showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
+        return const AlertDialog(
           title: Text('Incorrect Password!'),
         );
       },
@@ -78,132 +78,136 @@ class _LoginState extends State<Login> {
             ),
           ),
           SafeArea(
-            child: Center(
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'assets/images/tomasino_connect_logo.png',
-                        height: getScreenHeight(context) * 0.3,
-                        width: getScreenWidth(context) * 0.4,
-                        fit: BoxFit.fitHeight,
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            'TOMASINO',
-                            style: TextStyle(
+            child: SingleChildScrollView(
+              reverse: true,
+              child: Center(
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/tomasino_connect_logo.png',
+                          height: getScreenHeight(context) * 0.3,
+                          width: getScreenWidth(context) * 0.4,
+                          fit: BoxFit.fitHeight,
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              'TOMASINO',
+                              style: TextStyle(
+                                  fontSize: getScreenWidth(context) * 0.055,
+                                  fontFamily: 'Neo-Syber',
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                            ),
+                            Text(
+                              'CONNECT',
+                              style: TextStyle(
                                 fontSize: getScreenWidth(context) * 0.055,
                                 fontFamily: 'Neo-Syber',
                                 fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          ),
-                          Text(
-                            'CONNECT',
-                            style: TextStyle(
-                              fontSize: getScreenWidth(context) * 0.055,
-                              fontFamily: 'Neo-Syber',
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                  SizedBox(height: getScreenHeight(context) * 0.00001),
-                  AutoSizeText(
-                    "Start Connecting!",
-                    style: TextStyle(
-                      fontSize: getScreenWidth(context) * 0.055,
-                      fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            )
+                          ],
+                        )
+                      ],
                     ),
-                  ),
-                  SizedBox(height: getScreenHeight(context) * 0.036),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30.0),
-                    child: TextField(
-                      controller: emailController,
-                      decoration: InputDecoration(
-                        hintText: 'UST EMAIL',
-                        prefixIcon: Icon(CupertinoIcons.person_fill),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                        fillColor: Colors.white,
-                        filled: true,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: getScreenHeight(context) * 0.020),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30.0),
-                    child: TextField(
-                      controller: passwordController,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: 'PASSWORD',
-                        prefixIcon: Icon(CupertinoIcons.lock_fill),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                        fillColor: Colors.white,
-                        filled: true,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: getScreenHeight(context) * 0.030),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        minimumSize: Size(340, 60),
-                        backgroundColor: Color.fromRGBO(255, 179, 0, 1)),
-                    onPressed: () {
-                      signIn();
-                    },
-                    child: Text(
-                      "LOGIN",
+                    SizedBox(height: getScreenHeight(context) * 0.00001),
+                    AutoSizeText(
+                      "Start Connecting!",
                       style: TextStyle(
-                        color: Colors.white,
+                        fontSize: getScreenWidth(context) * 0.055,
                         fontWeight: FontWeight.bold,
-                        fontSize: getScreenWidth(context) * 0.045,
                       ),
                     ),
-                  ),
-                  SizedBox(height: getScreenHeight(context) * 0.040),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Dont have a UST Account? Enter as a',
-                        style: TextStyle(
-                          fontSize: getScreenWidth(context) * 0.035,
+                    SizedBox(height: getScreenHeight(context) * 0.036),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                      child: TextField(
+                        controller: emailController,
+                        decoration: const InputDecoration(
+                          hintText: 'UST EMAIL',
+                          prefixIcon: Icon(CupertinoIcons.person_fill),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                          fillColor: Colors.white,
+                          filled: true,
                         ),
                       ),
-                      SizedBox(width: getScreenWidth(context) * 0.010),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, '/home');
-                        },
-                        child: Text(
-                          'guest.',
+                    ),
+                    SizedBox(height: getScreenHeight(context) * 0.020),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                      child: TextField(
+                        controller: passwordController,
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                          hintText: 'PASSWORD',
+                          prefixIcon: Icon(CupertinoIcons.lock_fill),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                          fillColor: Colors.white,
+                          filled: true,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: getScreenHeight(context) * 0.030),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          minimumSize: const Size(340, 60),
+                          backgroundColor:
+                              const Color.fromRGBO(255, 179, 0, 1)),
+                      onPressed: () {
+                        signIn();
+                      },
+                      child: Text(
+                        "LOGIN",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: getScreenWidth(context) * 0.045,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: getScreenHeight(context) * 0.040),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Dont have a UST Account? Enter as a',
                           style: TextStyle(
-                            color: Color.fromRGBO(0, 161, 228, 1),
-                            fontWeight: FontWeight.bold,
                             fontSize: getScreenWidth(context) * 0.035,
                           ),
                         ),
-                      ),
-                    ],
-                  )
-                ],
+                        SizedBox(width: getScreenWidth(context) * 0.010),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, '/home');
+                          },
+                          child: Text(
+                            'guest.',
+                            style: TextStyle(
+                              color: const Color.fromRGBO(0, 161, 228, 1),
+                              fontWeight: FontWeight.bold,
+                              fontSize: getScreenWidth(context) * 0.035,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           ),
