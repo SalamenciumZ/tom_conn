@@ -10,6 +10,7 @@ import 'package:tom_conn/editPW.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tom_conn/utilities/auth_page.dart';
 import 'firebase_options.dart';
+import 'package:tom_conn/utilities/LoginOrRegister.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +23,6 @@ class MyApp extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final _scaffoldK = GlobalKey<ScaffoldMessengerState>();
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       home: AuthPage(),
       routes: {
         '/home': (context) => HomeScreen(),
-        '/login': (context) => Login(),
+        //'/login': (context) => Login(),
         '/loading': (context) => LoadingPage(),
         '/onboarding': (context) => OnboardingScreen(),
         '/settings': (context) => const settingsList(),
