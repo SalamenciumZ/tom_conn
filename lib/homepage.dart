@@ -103,11 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 horizontal: getScreenWidth(context) * 0.005),
             child: TextButton(
               onPressed: () {
-                if (user.isAnonymous) {
-                  signOut();
-                } else {
-                  signOut();
-                }
+                signOut();
               },
               child: Row(
                 children: [

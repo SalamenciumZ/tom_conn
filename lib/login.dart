@@ -59,7 +59,7 @@ class _LoginState extends State<Login> {
   }
 
   signInAnonymously() async {
-    final userCredential = await FirebaseAuth.instance.signInAnonymously();
+    await FirebaseAuth.instance.signInAnonymously();
   }
 
   @override
