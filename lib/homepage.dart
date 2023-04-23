@@ -5,7 +5,10 @@ import 'package:ionicons/ionicons.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:tom_conn/utilities/getWH.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:tom_conn/settingsList.dart';
 
+//comment
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
 
@@ -102,14 +105,28 @@ class _HomeScreenState extends State<HomeScreen> {
             child: TextButton(
               onPressed: () {
                 signOut();
-                //Navigator.pushNamed(context, '/login');
               },
-              child: Text(
-                'Log Out',
-                style: TextStyle(
-                  fontSize: getScreenWidth(context) * 0.03,
-                  color: Colors.white,
-                ),
+              child: Row(
+                children: [
+                  if (user.isAnonymous) ...[
+                    Text(
+                      'Log In',
+                      style: TextStyle(
+                        fontSize: getScreenWidth(context) * 0.03,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                  if (!user.isAnonymous) ...[
+                    Text(
+                      'Log Out',
+                      style: TextStyle(
+                        fontSize: getScreenWidth(context) * 0.03,
+                        color: Colors.white,
+                      ),
+                    )
+                  ]
+                ],
               ),
             ),
           ),
@@ -491,6 +508,66 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+      bottomNavigationBar: GNav(
+        selectedIndex: 0,
+        backgroundColor: Color(0xFF121212),
+        color: Colors.white,
+        activeColor: Color(0xFFfec00f),
+        gap: 10,
+        tabMargin: EdgeInsets.only(left: 10, right: 10),
+        tabs: [
+          GButton(
+              icon: Icons.home,
+              text: 'Home',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              }),
+          GButton(
+              icon: Icons.settings,
+              text: 'Settings',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const settingsList()),
+                );
+              }),
+          GButton(
+              icon: Icons.logout,
+              text: 'Log Out',
+              onPressed: () {
+                _confirmLogout();
+              }),
+        ],
+      ),
+    );
+  }
+
+  void _confirmLogout() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Confirm Log Out"),
+          content: Text("Do you want to log out?"),
+          actions: [
+            MaterialButton(
+              onPressed: () {
+                Navigator.of(context, rootNavigator: true).pop('dialog');
+              },
+              child: Text("Yes"),
+            ),
+            MaterialButton(
+              onPressed: () {
+                Navigator.of(context, rootNavigator: true).pop('dialog');
+              },
+              child: Text("Cancel"),
+            ),
+          ],
+        );
+      },
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:tom_conn/settingsList.dart';
 import 'package:tom_conn/aboutUs.dart';
+import 'package:tom_conn/homepage.dart';
 
 class editPW extends StatefulWidget {
   const editPW({Key? key}) : super(key: key);
@@ -109,11 +110,20 @@ class _editPass extends State<editPW> {
         ),
       ),
       bottomNavigationBar: GNav(
+        selectedIndex: 1,
         backgroundColor: Color(0xFF121212),
         color: Colors.white,
         activeColor: Color(0xFFfec00f),
-        gap: 1,
+        gap: 10,
+        tabMargin: EdgeInsets.only(left: 10, right: 10),
         tabs: [
+          GButton(icon: Icons.home, text: 'Home',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              }),
           GButton(icon: Icons.settings, text: 'Settings',
               onPressed: () {
                 Navigator.push(
@@ -121,30 +131,9 @@ class _editPass extends State<editPW> {
                   MaterialPageRoute(builder: (context) => const settingsList()),
                 );
               }),
-          GButton(icon: Icons.copyright, text: 'Disclaimer',
+          GButton(icon: Icons.logout, text: 'Log Out',
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const settingsList()),
-                );
-              }),
-          // GButton(icon: Icons.info, text: 'Home',
-          //     onPressed: () {
-          //       Navigator.push(
-          //         context,
-          //         MaterialPageRoute(builder: (context) => HomeScreen()),
-          //       );
-          //     }),
-          GButton(icon: Icons.info, text: 'About Us',
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => aboutUs()),
-                );
-              }),
-          GButton(icon: Icons.phone, text: 'Contact Us',
-              onPressed: () {
-
+                _confirmLogout();
               }),
         ],
       ),
@@ -180,6 +169,33 @@ class _editPass extends State<editPW> {
           ),
         ),
       ),
+    );
+  }
+
+  void _confirmLogout() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Confirm Log Out"),
+          content: Text(
+              "Do you want to log out?"),
+          actions: [
+            MaterialButton(
+              onPressed: () {
+                Navigator.of(context, rootNavigator: true).pop('dialog');
+              },
+              child: Text("Yes"),
+            ),
+            MaterialButton(
+              onPressed: () {
+                Navigator.of(context, rootNavigator: true).pop('dialog');
+              },
+              child: Text("Cancel"),
+            ),
+          ],
+        );
+      },
     );
   }
 }

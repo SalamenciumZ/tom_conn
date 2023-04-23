@@ -4,20 +4,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:tom_conn/utilities/getWH.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class Login extends StatefulWidget {
+class Register extends StatefulWidget {
   final Function()? onTap;
-  Login({super.key, required this.onTap});
+  Register({super.key, required this.onTap});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _LoginState extends State<Login> {
+class _RegisterState extends State<Register> {
   //controller
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-
-  void signIn() async {
+  final confirmedPasswordController = TextEditingController();
+  void signUp() async {
     showDialog(
       context: context,
       builder: (context) {
@@ -27,17 +27,29 @@ class _LoginState extends State<Login> {
       },
     );
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
-      Navigator.pop(context);
+      //checks if pw and confirmed pw is the same
+      if (passwordController.text == confirmedPasswordController.text &&
+          emailController.text.contains('@ust.edu.ph')) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+        Navigator.pop(context);
+      } else {
+        if (passwordController.text != confirmedPasswordController.text) {
+          showError('Passwords do not Match!');
+        } else {
+          showError('Enter UST Email!');
+        }
+      }
     } on FirebaseException catch (e) {
       Navigator.pop(context);
       if (e.code == 'user-not-found') {
-        showError("User does not exists.");
-      } else if (e.code == 'wrong-password') {
-        showError("Invalid Password");
+        showError(e.code);
+      } else if (e.code == 'weak-password') {
+        showError("Password Must be at least 6 characters.");
+      } else if (e.code == 'email-already-in-use') {
+        showError("Email already in use.");
       }
     }
   }
@@ -55,10 +67,6 @@ class _LoginState extends State<Login> {
         );
       },
     );
-  }
-
-  signInAnonymously() async {
-    await FirebaseAuth.instance.signInAnonymously();
   }
 
   @override
@@ -115,13 +123,13 @@ class _LoginState extends State<Login> {
                     ),
                     SizedBox(height: getScreenHeight(context) * 0.00001),
                     AutoSizeText(
-                      "Start Connecting!",
+                      "Create an Account!",
                       style: TextStyle(
                         fontSize: getScreenWidth(context) * 0.055,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: getScreenHeight(context) * 0.036),
+                    SizedBox(height: getScreenHeight(context) * 0.020),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30.0),
                       child: TextField(
@@ -168,17 +176,41 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                     ),
-                    SizedBox(height: getScreenHeight(context) * 0.030),
+                    SizedBox(height: getScreenHeight(context) * 0.020),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                      child: TextField(
+                        controller: confirmedPasswordController,
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                          hintText: 'CONFIRM PASSWORD',
+                          hintStyle: TextStyle(
+                              color:
+                                  Color.fromRGBO(0, 0, 0, 0.7019607843137254)),
+                          prefixIcon: Icon(CupertinoIcons.lock_fill),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Color.fromRGBO(
+                                    0, 0, 0, 0.7019607843137254)),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.lightBlueAccent),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: getScreenHeight(context) * 0.020),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          minimumSize: const Size(340, 60),
+                          minimumSize: const Size(340, 40),
                           backgroundColor:
                               const Color.fromRGBO(255, 179, 0, 1)),
                       onPressed: () {
-                        signIn();
+                        signUp();
                       },
                       child: Text(
-                        "LOGIN",
+                        "SIGN UP",
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -186,29 +218,23 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                     ),
-                    SizedBox(height: getScreenHeight(context) * 0.040),
+                    SizedBox(height: getScreenHeight(context) * 0.010),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        GestureDetector(
-                          onTap: () {
-                            signInAnonymously();
-                          },
-                          child: Text(
-                            'Sign in as Guest.',
-                            style: TextStyle(
-                              color: const Color.fromRGBO(0, 161, 228, 1),
-                              fontWeight: FontWeight.bold,
-                              fontSize: getScreenWidth(context) * 0.035,
-                            ),
-                          ),
+                        Text(
+                          'Already have an Account?',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: getScreenWidth(context) * 0.035),
                         ),
-                        SizedBox(width: getScreenWidth(context) * 0.2),
+                        SizedBox(
+                          width: getScreenWidth(context) * 0.010,
+                        ),
                         GestureDetector(
                           onTap: widget.onTap,
-                          //widget.onTap,
                           child: Text(
-                            'Register Now.',
+                            'Login Now.',
                             style: TextStyle(
                               color: const Color.fromRGBO(0, 161, 228, 1),
                               fontWeight: FontWeight.bold,
@@ -217,7 +243,7 @@ class _LoginState extends State<Login> {
                           ),
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),
