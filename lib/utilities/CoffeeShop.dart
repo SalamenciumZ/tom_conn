@@ -5,6 +5,7 @@ void main() {
 }
 
 
+
 class NavText extends StatefulWidget {
   final String text;
 
@@ -12,6 +13,7 @@ class NavText extends StatefulWidget {
 
   @override
   _NavTextState createState() => _NavTextState();
+
 }
 
 class _NavTextState extends State<NavText> {
@@ -37,8 +39,8 @@ class _NavTextState extends State<NavText> {
   }}
 
 class MyApp extends StatelessWidget {
-  final List<String> itemTitles = [    'Starbucks',    'Jollibee',    'Pancake House',    'Ramen 99',    'Tokyo Tokyo',    'McDonald\'s',    'KFC',    'Chowking',    'Yellow Cab',    'Mang Inasal',  ];
-  final List<String> itemImages = [    'assets/images/starbsLogo.png',    'assets/images/jolliLogo.png',    'assets/images/pancakeLogo.png',    'assets/images/Ramen99Logo.png',    'assets/images/tokyoLogo.png',    'assets/images/mcdoLogo.png',    'assets/images/kfcLogo.png',    'assets/images/chowLogo.png',    'assets/images/yCabLogo.png',    'assets/images/inasalLogo.png',  ];
+  final List<String> itemTitles = [   'Starbucks', 'Seatells Best'  ];
+  final List<String> itemImages = [    'assets/images/starbsLogo.png',  'assets/images/seattles.png'  ];
 
   @override
   Widget build(BuildContext context) {
@@ -112,9 +114,27 @@ class MyApp extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              NavText('Convenient store'),
-              NavText('Fast Food'),
-              NavText('Coffee Shop'),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/ConvStore.dart');
+                  print('Navigating to the convenient store page');
+                },
+                child: NavText('Convenient store'),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/convenient-store');
+                  print('Navigating to the fast food page');
+                },
+                child: NavText('Fast Food'),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/convenient-store');
+                  print('Navigating to the coffee shop page');
+                },
+                child: NavText('Coffee Shop'),
+              ),
             ],
           ),
         ),
@@ -122,3 +142,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
