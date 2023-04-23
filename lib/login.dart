@@ -36,9 +36,9 @@ class _LoginState extends State<Login> {
     } on FirebaseException catch (e) {
       Navigator.pop(context);
       if (e.code == 'user-not-found') {
-        showError(e.code);
+        showError("User does not exists.");
       } else if (e.code == 'wrong-password') {
-        showError(e.code);
+        showError("Invalid Password");
       }
     }
   }

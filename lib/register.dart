@@ -45,8 +45,10 @@ class _RegisterState extends State<Register> {
       Navigator.pop(context);
       if (e.code == 'user-not-found') {
         showError(e.code);
-      } else if (e.code == 'wrong-password') {
-        showError(e.code);
+      } else if (e.code == 'weak-password') {
+        showError("Password Must be at least 6 characters.");
+      } else if (e.code == 'email-already-in-use') {
+        showError("Email already in use.");
       }
     }
   }

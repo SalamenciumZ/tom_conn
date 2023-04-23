@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tom_conn/homepage.dart';
+import 'package:tom_conn/first_time_use.dart';
 import 'package:tom_conn/login.dart';
 
 class AuthPage extends StatefulWidget {
