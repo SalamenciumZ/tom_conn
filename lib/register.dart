@@ -5,8 +5,7 @@ import 'package:tom_conn/utilities/getWH.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Register extends StatefulWidget {
-  final Function()? onTap;
-  Register({super.key, required this.onTap});
+  Register({super.key});
 
   @override
   State<Register> createState() => _RegisterState();
@@ -34,6 +33,7 @@ class _RegisterState extends State<Register> {
           email: emailController.text,
           password: passwordController.text,
         );
+        Navigator.pop(context);
       } else {
         if (passwordController.text != confirmedPasswordController.text) {
           showError('Passwords do not Match!');
@@ -41,8 +41,6 @@ class _RegisterState extends State<Register> {
           showError('Enter UST Email!');
         }
       }
-
-      Navigator.pop(context);
     } on FirebaseException catch (e) {
       Navigator.pop(context);
       if (e.code == 'user-not-found') {
@@ -231,7 +229,9 @@ class _RegisterState extends State<Register> {
                           width: getScreenWidth(context) * 0.010,
                         ),
                         GestureDetector(
-                          onTap: widget.onTap,
+                          onTap: () {
+                            Navigator.pushNamed(context, '/login');
+                          },
                           child: Text(
                             'Login Now.',
                             style: TextStyle(

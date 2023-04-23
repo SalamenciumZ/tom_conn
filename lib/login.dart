@@ -5,8 +5,9 @@ import 'package:tom_conn/utilities/getWH.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Login extends StatefulWidget {
-  final Function()? onTap;
-  Login({super.key, required this.onTap});
+  Login({
+    super.key,
+  });
 
   @override
   State<Login> createState() => _LoginState();
@@ -55,6 +56,10 @@ class _LoginState extends State<Login> {
         );
       },
     );
+  }
+
+  signInAnonymously() async {
+    final userCredential = await FirebaseAuth.instance.signInAnonymously();
   }
 
   @override
@@ -186,17 +191,24 @@ class _LoginState extends State<Login> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          'Sign in as Guest.',
-                          style: TextStyle(
-                            color: const Color.fromRGBO(0, 161, 228, 1),
-                            fontWeight: FontWeight.bold,
-                            fontSize: getScreenWidth(context) * 0.035,
+                        GestureDetector(
+                          onTap: () {
+                            signInAnonymously();
+                          },
+                          child: Text(
+                            'Sign in as Guest.',
+                            style: TextStyle(
+                              color: const Color.fromRGBO(0, 161, 228, 1),
+                              fontWeight: FontWeight.bold,
+                              fontSize: getScreenWidth(context) * 0.035,
+                            ),
                           ),
                         ),
                         SizedBox(width: getScreenWidth(context) * 0.2),
                         GestureDetector(
-                          onTap: widget.onTap,
+                          onTap: () {
+                            Navigator.pushNamed(context, '/register');
+                          }, //widget.onTap,
                           child: Text(
                             'Register Now.',
                             style: TextStyle(

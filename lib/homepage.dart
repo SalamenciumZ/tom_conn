@@ -26,7 +26,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -104,15 +103,33 @@ class _HomeScreenState extends State<HomeScreen> {
                 horizontal: getScreenWidth(context) * 0.005),
             child: TextButton(
               onPressed: () {
-                signOut();
-                //Navigator.pushNamed(context, '/login');
+                if (user.isAnonymous) {
+                  signOut();
+                } else {
+                  signOut();
+                }
               },
-              child: Text(
-                'Log Out',
-                style: TextStyle(
-                  fontSize: getScreenWidth(context) * 0.03,
-                  color: Colors.white,
-                ),
+              child: Row(
+                children: [
+                  if (user.isAnonymous) ...[
+                    Text(
+                      'Log In',
+                      style: TextStyle(
+                        fontSize: getScreenWidth(context) * 0.03,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                  if (!user.isAnonymous) ...[
+                    Text(
+                      'Log Out',
+                      style: TextStyle(
+                        fontSize: getScreenWidth(context) * 0.03,
+                        color: Colors.white,
+                      ),
+                    )
+                  ]
+                ],
               ),
             ),
           ),
@@ -502,21 +519,27 @@ class _HomeScreenState extends State<HomeScreen> {
         gap: 10,
         tabMargin: EdgeInsets.only(left: 10, right: 10),
         tabs: [
-          GButton(icon: Icons.home, text: 'Home',
+          GButton(
+              icon: Icons.home,
+              text: 'Home',
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => HomeScreen()),
                 );
               }),
-          GButton(icon: Icons.settings, text: 'Settings',
+          GButton(
+              icon: Icons.settings,
+              text: 'Settings',
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const settingsList()),
                 );
               }),
-          GButton(icon: Icons.logout, text: 'Log Out',
+          GButton(
+              icon: Icons.logout,
+              text: 'Log Out',
               onPressed: () {
                 _confirmLogout();
               }),
@@ -531,8 +554,7 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (context) {
         return AlertDialog(
           title: Text("Confirm Log Out"),
-          content: Text(
-              "Do you want to log out?"),
+          content: Text("Do you want to log out?"),
           actions: [
             MaterialButton(
               onPressed: () {
