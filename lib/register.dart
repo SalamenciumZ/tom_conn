@@ -5,7 +5,8 @@ import 'package:tom_conn/utilities/getWH.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Register extends StatefulWidget {
-  Register({super.key});
+  final Function()? onTap;
+  Register({super.key, required this.onTap});
 
   @override
   State<Register> createState() => _RegisterState();
@@ -231,9 +232,7 @@ class _RegisterState extends State<Register> {
                           width: getScreenWidth(context) * 0.010,
                         ),
                         GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/login');
-                          },
+                          onTap: widget.onTap,
                           child: Text(
                             'Login Now.',
                             style: TextStyle(
