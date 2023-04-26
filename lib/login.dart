@@ -28,8 +28,8 @@ class _LoginState extends State<Login> {
     );
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
       );
       Navigator.pop(context);
     } on FirebaseException catch (e) {
