@@ -65,11 +65,8 @@ class _VerifyEmailState extends State<VerifyEmail> {
       return HomeScreen();
     } else {
       return Scaffold(
-        appBar: AppBar(
-          title: Text('Verify Email'),
-        ),
         body: Padding(
-          padding: EdgeInsets.all(16),
+          padding: EdgeInsets.all(60),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -95,6 +92,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
                   ),
                 ),
               ),
+              SizedBox(height: getScreenHeight(context) * 0.020),
               GestureDetector(
                 onTap: () {
                   FirebaseAuth.instance.signOut();
