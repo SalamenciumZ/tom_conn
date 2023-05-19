@@ -6,6 +6,7 @@ import 'package:tom_conn/aboutUs.dart';
 import 'package:tom_conn/editPW.dart';
 import 'package:tom_conn/homepage.dart';
 import 'package:tom_conn/settings.dart';
+import 'package:tom_conn/utilities/auth_page.dart';
 import 'package:tom_conn/utilities/getWH.dart';
 import 'package:tom_conn/contactUs.dart';
 
@@ -32,7 +33,7 @@ class _settingsListState extends State<settingsList> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HomeScreen()),
+              MaterialPageRoute(builder: (context) => AuthPage()),
             );
           },
         ),
@@ -112,21 +113,27 @@ class _settingsListState extends State<settingsList> {
         gap: 10,
         tabMargin: EdgeInsets.only(left: 10, right: 10),
         tabs: [
-          GButton(icon: Icons.home, text: 'Home',
+          GButton(
+              icon: Icons.home,
+              text: 'Home',
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                  MaterialPageRoute(builder: (context) => AuthPage()),
                 );
               }),
-          GButton(icon: Icons.settings, text: 'Settings',
+          GButton(
+              icon: Icons.settings,
+              text: 'Settings',
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const settingsList()),
                 );
               }),
-          GButton(icon: Icons.logout, text: 'Log Out',
+          GButton(
+              icon: Icons.logout,
+              text: 'Log Out',
               onPressed: () {
                 _confirmLogout();
               }),
@@ -143,14 +150,14 @@ class _settingsListState extends State<settingsList> {
         decoration: InputDecoration(
           suffixIcon: isObscure
               ? IconButton(
-            onPressed: () {
-              setState(() {
-                showPassword = !showPassword;
-              });
-            },
-            icon: Icon(Icons.remove_red_eye),
-            color: Colors.grey,
-          )
+                  onPressed: () {
+                    setState(() {
+                      showPassword = !showPassword;
+                    });
+                  },
+                  icon: Icon(Icons.remove_red_eye),
+                  color: Colors.grey,
+                )
               : null,
           contentPadding: EdgeInsets.only(bottom: 3),
           labelText: labelText,
@@ -223,8 +230,7 @@ class _settingsListState extends State<settingsList> {
         leading: IconButton(
           icon: const Icon(Icons.copyright),
           color: Colors.deepOrange,
-          onPressed: () {
-          },
+          onPressed: () {},
         ),
         title: 'Disclaimer',
         subtitle: '',
@@ -299,8 +305,7 @@ class _settingsListState extends State<settingsList> {
       builder: (context) {
         return AlertDialog(
           title: Text("Confirm Log Out"),
-          content: Text(
-              "Do you want to log out?"),
+          content: Text("Do you want to log out?"),
           actions: [
             MaterialButton(
               onPressed: () {
