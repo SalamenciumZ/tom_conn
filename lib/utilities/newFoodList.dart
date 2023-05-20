@@ -2,34 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:tom_conn/utilities/ConvStore.dart';
 import 'package:tom_conn/utilities/FastFood.dart';
 import 'package:tom_conn/utilities/CoffeeShop.dart';
+import 'package:tom_conn/utilities/auth_page.dart';
+import 'package:tom_conn/utilities/getWH.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-
-
-
-void main() {
-  runApp(newFoodList());
-}
-
-class newFoodList extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.blue),
-      routes: {
-        '/': (context) => newFoodListPage(),
-        '/convenientStores': (context) => ConvStore(),
-        '/fastFood': (context) => FastFood(),
-        '/coffeeShop': (context) => CoffeeShop(),
-      },
-      initialRoute: '/',
-    );
-  }
-}
 
 class newFoodListPage extends StatelessWidget {
-  final List<String> itemTitles =
-  [
+  final List<String> itemTitles = [
     'Starbucks',
     'Pancake House',
     'Ramen 99',
@@ -43,10 +21,9 @@ class newFoodListPage extends StatelessWidget {
     'assets/images/Ramen99Logo.png',
     'assets/images/tokyoLogo.png',
     'assets/images/chowLogo.png',
-    ];
+  ];
 
   @override
-
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -61,21 +38,26 @@ class newFoodListPage extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, '/convenientStores');
               },
-              child: Text('Convenient Stores'),
+              child: Text('Convenient Stores',
+                  style: TextStyle(
+                      fontSize: getScreenWidth(context) * 0.03,
+                      color: Colors.white)),
             ),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.0),
             child: TextButton(
               style: TextButton.styleFrom(
-              primary: Colors.white,
-    ),
+                primary: Colors.white,
+              ),
               onPressed: () {
                 Navigator.pushNamed(context, '/fastFood');
               },
               child: Text(
                 'Fast Food',
-                style: TextStyle(fontSize: 16, color: Colors.white),
+                style: TextStyle(
+                    fontSize: getScreenWidth(context) * 0.03,
+                    color: Colors.white),
               ),
             ),
           ),
@@ -88,9 +70,24 @@ class newFoodListPage extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, '/coffeeShop');
               },
-              child: Text('Coffee Shop'),
+              child: Text('Coffee Shop',
+                  style: TextStyle(
+                      fontSize: getScreenWidth(context) * 0.03,
+                      color: Colors.white)),
             ),
           ),
+          IconButton(
+            icon: Icon(
+              Icons.close,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AuthPage()),
+              );
+            },
+          )
         ],
       ),
       body: Center(
@@ -100,7 +97,7 @@ class newFoodListPage extends StatelessWidget {
             return MouseRegion(
               cursor: SystemMouseCursors.click,
               child: InkWell(
-                onTap: ()  {
+                onTap: () {
                   String itemTitle = itemTitles[index];
                   String url = "";
 
@@ -108,12 +105,13 @@ class newFoodListPage extends StatelessWidget {
                     url = 'https://www.starbucks.ph/';
                   } else if (itemTitle == 'Pancake House') {
                     url = 'https://www.pancakehouse.com.ph/';
-                  }else if(itemTitle == 'Ramen99'){
-                    url = 'https://www.smsupermalls.com/mall-directory/tenants/smtm/KYU+KYU+RAMEN+99/https://www.smsupermalls.com/mall-directory/tenants/smtm/KYU+KYU+RAMEN+99/';
-                  }else if(itemTitle == 'Tokyo Tokyo'){
+                  } else if (itemTitle == 'Ramen99') {
+                    url =
+                        'https://www.smsupermalls.com/mall-directory/tenants/smtm/KYU+KYU+RAMEN+99/https://www.smsupermalls.com/mall-directory/tenants/smtm/KYU+KYU+RAMEN+99/';
+                  } else if (itemTitle == 'Tokyo Tokyo') {
                     url = 'https://www.tokyotokyodelivery.ph/';
-                  }else if(itemTitle == 'Chowking'){
-                   url = 'https://www.chowkingdelivery.com/home';
+                  } else if (itemTitle == 'Chowking') {
+                    url = 'https://www.chowkingdelivery.com/home';
                   }
 
                   if (url.isNotEmpty) {
@@ -151,7 +149,8 @@ class newFoodListPage extends StatelessWidget {
                       SizedBox(width: 16),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+                          padding:
+                              EdgeInsets.symmetric(vertical: 16, horizontal: 8),
                           child: Text(
                             itemTitles[index],
                             style: TextStyle(fontSize: 18),
@@ -165,7 +164,6 @@ class newFoodListPage extends StatelessWidget {
             );
           },
         ),
-
       ),
     );
   }
@@ -178,11 +176,3 @@ void _launchURL(BuildContext context, String url) async {
     throw 'Could not launch $url';
   }
 }
-
-
-
-
-
-
-
-

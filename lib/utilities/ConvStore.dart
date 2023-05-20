@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:tom_conn/utilities/ConvStore.dart';
 import 'package:tom_conn/utilities/FastFood.dart';
+import 'package:tom_conn/utilities/auth_page.dart';
+import 'package:tom_conn/utilities/getWH.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ConvStore extends StatelessWidget {
-  final List<String> itemTitles = [    '7-Eleven', 'Lawson',  ];
-  final List<String> itemImages = [    'assets/images/SevenEleven.png',    'assets/images/lawson.png',  ];
+  final List<String> itemTitles = [
+    '7-Eleven',
+    'Lawson',
+  ];
+  final List<String> itemImages = [
+    'assets/images/SevenEleven.png',
+    'assets/images/lawson.png',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +26,16 @@ class ConvStore extends StatelessWidget {
             child: TextButton(
               style: TextButton.styleFrom(
                 primary: Colors.white, // Set black text color
-                textStyle: TextStyle(color: Colors.white), // Set white glow when hovered
+                textStyle: TextStyle(
+                    color: Colors.white), // Set white glow when hovered
               ),
               onPressed: () {
-                Navigator.pushNamed(context, '/convenientStores');
+                Navigator.pushNamed(context, '/food');
               },
-              child: Text('Convenient Stores'),
+              child: Text('All',
+                  style: TextStyle(
+                      fontSize: getScreenWidth(context) * 0.03,
+                      color: Colors.white)),
             ),
           ),
           Padding(
@@ -31,12 +43,16 @@ class ConvStore extends StatelessWidget {
             child: TextButton(
               style: TextButton.styleFrom(
                 primary: Colors.white, // Set black text color
-                textStyle: TextStyle(color: Colors.white), // Set white glow when hovered
+                textStyle: TextStyle(
+                    color: Colors.white), // Set white glow when hovered
               ),
               onPressed: () {
                 Navigator.pushNamed(context, '/fastFood');
               },
-              child: Text('Fast Food'),
+              child: Text('Fast Food',
+                  style: TextStyle(
+                      fontSize: getScreenWidth(context) * 0.03,
+                      color: Colors.white)),
             ),
           ),
           Padding(
@@ -44,14 +60,30 @@ class ConvStore extends StatelessWidget {
             child: TextButton(
               style: TextButton.styleFrom(
                 primary: Colors.white, // Set black text color
-                textStyle: TextStyle(color: Colors.white), // Set white glow when hovered
+                textStyle: TextStyle(
+                    color: Colors.white), // Set white glow when hovered
               ),
               onPressed: () {
                 Navigator.pushNamed(context, '/coffeeShop');
               },
-              child: Text('Coffee Shop'),
+              child: Text('Coffee Shop',
+                  style: TextStyle(
+                      fontSize: getScreenWidth(context) * 0.03,
+                      color: Colors.white)),
             ),
           ),
+          IconButton(
+            icon: Icon(
+              Icons.close,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AuthPage()),
+              );
+            },
+          )
         ],
       ),
       body: Center(
@@ -106,7 +138,8 @@ class ConvStore extends StatelessWidget {
                       SizedBox(width: 16),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+                          padding:
+                              EdgeInsets.symmetric(vertical: 16, horizontal: 8),
                           child: Text(
                             itemTitles[index],
                             style: TextStyle(fontSize: 18),
@@ -120,7 +153,6 @@ class ConvStore extends StatelessWidget {
             );
           },
         ),
-
       ),
     );
   }

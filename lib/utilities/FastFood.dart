@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:tom_conn/utilities/ConvStore.dart';
 import 'package:tom_conn/utilities/FastFood.dart';
+import 'package:tom_conn/utilities/getWH.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'package:tom_conn/utilities/auth_page.dart';
+
 class FastFood extends StatelessWidget {
-  final List<String> itemTitles =
-  [
+  final List<String> itemTitles = [
     'Pancake House',
     'Ramen 99',
     'Tokyo Tokyo',
@@ -30,12 +32,33 @@ class FastFood extends StatelessWidget {
             child: TextButton(
               style: TextButton.styleFrom(
                 primary: Colors.white, // Set black text color
-                textStyle: TextStyle(color: Colors.white), // Set white glow when hovered
+                textStyle: TextStyle(
+                    color: Colors.white), // Set white glow when hovered
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/food');
+              },
+              child: Text('All',
+                  style: TextStyle(
+                      fontSize: getScreenWidth(context) * 0.03,
+                      color: Colors.white)),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextButton(
+              style: TextButton.styleFrom(
+                primary: Colors.white, // Set black text color
+                textStyle: TextStyle(
+                    color: Colors.white), // Set white glow when hovered
               ),
               onPressed: () {
                 Navigator.pushNamed(context, '/convenientStores');
               },
-              child: Text('Convenient Stores'),
+              child: Text('Convenient Stores',
+                  style: TextStyle(
+                      fontSize: getScreenWidth(context) * 0.03,
+                      color: Colors.white)),
             ),
           ),
           Padding(
@@ -43,41 +66,30 @@ class FastFood extends StatelessWidget {
             child: TextButton(
               style: TextButton.styleFrom(
                 primary: Colors.white, // Set black text color
-                textStyle: TextStyle(color: Colors.white), // Set white glow when hovered
-              ),
-              onPressed: () {
-                Navigator.pushNamed(context, '/fastFood');
-              },
-              child: Text('Fast Food'),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: TextButton(
-              style: TextButton.styleFrom(
-                primary: Colors.white, // Set black text color
-                textStyle: TextStyle(color: Colors.white), // Set white glow when hovered
+                textStyle: TextStyle(
+                    color: Colors.white), // Set white glow when hovered
               ),
               onPressed: () {
                 Navigator.pushNamed(context, '/coffeeShop');
               },
-              child: Text('Coffee Shop'),
+              child: Text('Coffee Shop',
+                  style: TextStyle(
+                      fontSize: getScreenWidth(context) * 0.03,
+                      color: Colors.white)),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: TextButton(
-              style: TextButton.styleFrom(
-                primary: Colors.white, // Set black text color
-                textStyle: TextStyle(color: Colors.white), // Set white glow when hovered
-              ),
-              onPressed: () {
-                Navigator.pushNamed(context, '/');
-              },
-              child: Text('All'),
+          IconButton(
+            icon: Icon(
+              Icons.close,
+              color: Colors.white,
             ),
-          ),
-
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AuthPage()),
+              );
+            },
+          )
         ],
       ),
       body: Center(
@@ -95,11 +107,12 @@ class FastFood extends StatelessWidget {
                     url = 'https://www.starbucks.ph/';
                   } else if (itemTitle == 'Pancake House') {
                     url = 'https://www.pancakehouse.com.ph/';
-                  }else if(itemTitle == 'Ramen99'){
-                    url = 'https://www.smsupermalls.com/mall-directory/tenants/smtm/KYU+KYU+RAMEN+99/https://www.smsupermalls.com/mall-directory/tenants/smtm/KYU+KYU+RAMEN+99/';
-                  }else if(itemTitle == 'Tokyo Tokyo'){
+                  } else if (itemTitle == 'Ramen99') {
+                    url =
+                        'https://www.smsupermalls.com/mall-directory/tenants/smtm/KYU+KYU+RAMEN+99/https://www.smsupermalls.com/mall-directory/tenants/smtm/KYU+KYU+RAMEN+99/';
+                  } else if (itemTitle == 'Tokyo Tokyo') {
                     url = 'https://www.tokyotokyodelivery.ph/';
-                  }else if(itemTitle == 'Chowking'){
+                  } else if (itemTitle == 'Chowking') {
                     url = 'https://www.chowkingdelivery.com/home';
                   }
 
@@ -138,7 +151,8 @@ class FastFood extends StatelessWidget {
                       SizedBox(width: 16),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+                          padding:
+                              EdgeInsets.symmetric(vertical: 16, horizontal: 8),
                           child: Text(
                             itemTitles[index],
                             style: TextStyle(fontSize: 18),
@@ -152,7 +166,6 @@ class FastFood extends StatelessWidget {
             );
           },
         ),
-
       ),
     );
   }

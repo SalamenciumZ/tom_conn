@@ -8,7 +8,11 @@ import 'package:tom_conn/accSettings.dart';
 import 'package:tom_conn/settingsList.dart';
 import 'package:tom_conn/editPW.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:tom_conn/utilities/CoffeeShop.dart';
+import 'package:tom_conn/utilities/ConvStore.dart';
+import 'package:tom_conn/utilities/FastFood.dart';
 import 'package:tom_conn/utilities/auth_page.dart';
+import 'package:tom_conn/utilities/newFoodList.dart';
 import 'firebase_options.dart';
 
 int? isViewed;
@@ -42,6 +46,10 @@ class MyApp extends StatelessWidget {
         '/accSettings': (context) => settings(),
         '/editPW': (context) => editPW(),
         '/auth': (context) => AuthPage(),
+        '/food': (context) => newFoodListPage(),
+        '/convenientStores': (context) => ConvStore(),
+        '/fastFood': (context) => FastFood(),
+        '/coffeeShop': (context) => CoffeeShop(),
       },
     );
   }

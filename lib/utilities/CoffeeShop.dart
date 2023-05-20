@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:tom_conn/utilities/ConvStore.dart';
 import 'package:tom_conn/utilities/FastFood.dart';
+import 'package:tom_conn/utilities/auth_page.dart';
+import 'package:tom_conn/utilities/getWH.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CoffeeShop extends StatelessWidget {
-  final List<String> itemTitles = [
-    'Starbucks',
-    'Seattles Best'
-  ];
+  final List<String> itemTitles = ['Starbucks', 'Seattles Best'];
 
   final List<String> itemImages = [
     'assets/images/starbsLogo.png',
@@ -25,53 +24,64 @@ class CoffeeShop extends StatelessWidget {
             child: TextButton(
               style: TextButton.styleFrom(
                 primary: Colors.white, // Set black text color
-                textStyle: TextStyle(color: Colors.white), // Set white glow when hovered
+                textStyle: TextStyle(
+                    color: Colors.white), // Set white glow when hovered
               ),
               onPressed: () {
-                Navigator.pushNamed(context, '/convenientStores');
-              },
-              child: Text('Convenient Stores'),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: TextButton(
-              style: TextButton.styleFrom(
-                primary: Colors.white, // Set black text color
-                textStyle: TextStyle(color: Colors.white), // Set white glow when hovered
-              ),
-              onPressed: () {
-                Navigator.pushNamed(context, '/fastFood');
-              },
-              child: Text('Fast Food'),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: TextButton(
-              style: TextButton.styleFrom(
-                primary: Colors.white, // Set black text color
-                textStyle: TextStyle(color: Colors.white), // Set white glow when hovered
-              ),
-              onPressed: () {
-                Navigator.pushNamed(context, '/coffeeShop');
-              },
-              child: Text('Coffee Shop'),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: TextButton(
-              style: TextButton.styleFrom(
-                primary: Colors.white, // Set black text color
-                textStyle: TextStyle(color: Colors.white), // Set white glow when hovered
-              ),
-              onPressed: () {
-                Navigator.pushNamed(context, '/');
+                Navigator.pushNamed(
+                  context,
+                  '/food',
+                );
               },
               child: Text('All'),
             ),
           ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextButton(
+              style: TextButton.styleFrom(
+                primary: Colors.white, // Set black text color
+                textStyle: TextStyle(
+                    color: Colors.white), // Set white glow when hovered
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/convenientStores');
+              },
+              child: Text('Convenient Stores',
+                  style: TextStyle(
+                      fontSize: getScreenWidth(context) * 0.03,
+                      color: Colors.white)),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextButton(
+              style: TextButton.styleFrom(
+                primary: Colors.white, // Set black text color
+                textStyle: TextStyle(
+                    color: Colors.white), // Set white glow when hovered
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/fastFood');
+              },
+              child: Text('Fast Food',
+                  style: TextStyle(
+                      fontSize: getScreenWidth(context) * 0.03,
+                      color: Colors.white)),
+            ),
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.close,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AuthPage()),
+              );
+            },
+          )
         ],
       ),
       body: Center(
@@ -126,7 +136,8 @@ class CoffeeShop extends StatelessWidget {
                       SizedBox(width: 16),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+                          padding:
+                              EdgeInsets.symmetric(vertical: 16, horizontal: 8),
                           child: Text(
                             itemTitles[index],
                             style: TextStyle(fontSize: 18),
@@ -140,7 +151,6 @@ class CoffeeShop extends StatelessWidget {
             );
           },
         ),
-
       ),
     );
   }
