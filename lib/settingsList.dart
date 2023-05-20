@@ -108,6 +108,10 @@ class _settingsListState extends State<settingsList> {
                 buildContactUs(),
               ],
             ),
+            const SizedBox(height: 32),
+            SettingsGroup(title: 'EXPERIMENTAL', children: <Widget>[
+              buildEncrypt(),
+            ],),
           ],
         ),
       ),

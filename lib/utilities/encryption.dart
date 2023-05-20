@@ -45,11 +45,7 @@ class cryptography {
     return encrypterSalsa20.encrypt(encryptedBOTH.toString(), iv: ivSalsa20);
   }
 
-  static decryptONE(text) { // Decrypts AES (DO NOT CALL)
-    return encrypterSalsa20.decrypt(text, iv: ivSalsa20);
-  }
-
   static decryptTWO(text) { // Decrypts Salsa20 (call this function instead)
-    return encrypterAES.decrypt(decryptONE(text), iv: ivAES);
+    return encrypterAES.decrypt(decryptAES(text), iv: ivAES);
   }
 }

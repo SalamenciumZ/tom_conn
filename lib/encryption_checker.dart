@@ -71,14 +71,14 @@ class _settingsCheck extends State<encryptionCheck> {
                   onPressed: () {
                   plainText = tec.text;
                   setState(() {
-                    encryptedText = cryptography.encryptBOTH(plainText);
+                    encryptedText = cryptography.encryptSalsa20(plainText);
                   });
                 },
                     child: Text('Encrypt'),),
                 ElevatedButton(
                   onPressed: () {
                     setState(() {
-                      encryptedText = cryptography.decryptTWO(encryptedText);
+                      encryptedText = cryptography.decryptSalsa20(encryptedText);
                       print("Type: " + encryptedText.runtimeType.toString());
                     });
                 },
