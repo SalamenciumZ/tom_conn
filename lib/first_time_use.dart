@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tom_conn/utilities/getWH.dart';
+import 'dart:async';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -13,6 +15,12 @@ class OnboardingScreen extends StatefulWidget {
 class _OnBoardingScreenState extends State<OnboardingScreen> {
   //controller tells what page we the user is in
   PageController _controller = PageController();
+
+  storeOnBoardInfo() async {
+    int isViewed = 0;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('onboarding', isViewed);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,8 +109,9 @@ class _OnBoardingScreenState extends State<OnboardingScreen> {
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Color.fromRGBO(254, 192, 15, 1)),
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/login');
+                        onPressed: () async {
+                          await storeOnBoardInfo();
+                          Navigator.pushNamed(context, '/auth');
                         },
                         child: Text(
                           'LOGIN',

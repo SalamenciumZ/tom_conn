@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tom_conn/homepage.dart';
 import 'package:tom_conn/utilities/logInOrRegister.dart';
+import 'package:tom_conn/verifyEmail.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -19,7 +20,11 @@ class _AuthPageState extends State<AuthPage> {
         builder: (context, snapshot) {
           //user is logged in
           if (snapshot.hasData) {
-            return HomeScreen();
+            if (!FirebaseAuth.instance.currentUser!.isAnonymous) {
+              return VerifyEmail();
+            } else {
+              return HomeScreen();
+            }
           }
           //user is not logged in
           else {

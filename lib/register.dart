@@ -31,8 +31,8 @@ class _RegisterState extends State<Register> {
       if (passwordController.text == confirmedPasswordController.text &&
           emailController.text.contains('@ust.edu.ph')) {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailController.text,
-          password: passwordController.text,
+          email: emailController.text.trim(),
+          password: passwordController.text.trim(),
         );
         Navigator.pop(context);
       } else {

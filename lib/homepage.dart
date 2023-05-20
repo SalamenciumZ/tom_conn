@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:tom_conn/WebView.dart';
+import 'package:tom_conn/utilities/auth_page.dart';
 import 'package:tom_conn/utilities/getWH.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:tom_conn/settingsList.dart';
@@ -21,6 +23,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void signOut() {
     FirebaseAuth.instance.signOut();
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => AuthPage()),
+    );
   }
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -193,7 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          SizedBox(height: getScreenHeight(context) * 0.020),
+          SizedBox(height: getScreenHeight(context) * 0.017),
           Expanded(
             child: GridView.count(
                 crossAxisCount: 4,
@@ -201,7 +207,330 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisSpacing: getScreenWidth(context) * 0.010,
                 children: <Widget>[
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      if (user.isAnonymous) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MyWebView(
+                                  url:
+                                      'https://www.ust.edu.ph/the-university/')),
+                        );
+                      } else {
+                        if (user.email!.contains('teacher')) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const MyWebView(
+                                    url: 'https://guruspatio.ust.edu.ph/')),
+                          );
+                        } else if (user.email!.contains('alumni')) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const MyWebView(
+                                    url:
+                                        'https://alumnirelations.ust.edu.ph/login')),
+                          );
+                        } else {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const MyWebView(
+                                    url:
+                                        'https://myuste.ust.edu.ph/student/index.jsp?id=gray')),
+                          );
+                        }
+                      }
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (user.isAnonymous) ...[
+                          CircleAvatar(
+                            radius: getScreenWidth(context) * 0.07,
+                            backgroundColor: Color.fromRGBO(255, 179, 0, 1),
+                            child: Icon(
+                              MdiIcons.townHall,
+                              color: Colors.white,
+                              size: getScreenWidth(context) * 0.06,
+                            ),
+                          ),
+                          SizedBox(height: getScreenHeight(context) * 0.010),
+                          Text(
+                            'General Info',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: getScreenWidth(context) * 0.03),
+                          ),
+                        ] else ...[
+                          if (user.email!.contains('teacher')) ...[
+                            CircleAvatar(
+                              radius: getScreenWidth(context) * 0.07,
+                              backgroundColor: Color.fromRGBO(255, 179, 0, 1),
+                              child: Icon(
+                                LineAwesomeIcons.chalkboard,
+                                color: Colors.white,
+                                size: getScreenWidth(context) * 0.06,
+                              ),
+                            ),
+                            SizedBox(height: getScreenHeight(context) * 0.010),
+                            Text(
+                              'Guru\u0027s Patio',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: getScreenWidth(context) * 0.03),
+                            ),
+                          ] else if (user.email!.contains('alumni')) ...[
+                            CircleAvatar(
+                              radius: getScreenWidth(context) * 0.07,
+                              backgroundColor: Color.fromRGBO(255, 179, 0, 1),
+                              child: Icon(
+                                MdiIcons.accountSchoolOutline,
+                                color: Colors.white,
+                                size: getScreenWidth(context) * 0.06,
+                              ),
+                            ),
+                            SizedBox(height: getScreenHeight(context) * 0.010),
+                            Text(
+                              'Alumni Portal',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: getScreenWidth(context) * 0.03),
+                            ),
+                          ] else ...[
+                            CircleAvatar(
+                              radius: getScreenWidth(context) * 0.07,
+                              backgroundColor: Color.fromRGBO(255, 179, 0, 1),
+                              child: Icon(
+                                LineAwesomeIcons.user,
+                                color: Colors.white,
+                                size: getScreenWidth(context) * 0.06,
+                              ),
+                            ),
+                            SizedBox(height: getScreenHeight(context) * 0.010),
+                            Text(
+                              'MyUste Portal',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: getScreenWidth(context) * 0.03),
+                            ),
+                          ]
+                        ]
+                      ],
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      if (user.isAnonymous) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MyWebView(
+                                  url:
+                                      'https://www.ust.edu.ph/academics/programs/')),
+                        );
+                      } else {
+                        if (user.email!.contains('teacher')) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const MyWebView(
+                                    url: 'https://guruspatio.ust.edu.ph/')),
+                          );
+                        } else if (user.email!.contains('alumni')) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const MyWebView(
+                                    url:
+                                        'https://www.ust.edu.ph/administrative-offices/office-of-alumni-relations/')),
+                          );
+                        } else {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const MyWebView(
+                                    url:
+                                        'https://ust.blackboard.com/webapps/login/')),
+                          );
+                        }
+                      }
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (user.isAnonymous) ...[
+                          CircleAvatar(
+                            radius: getScreenWidth(context) * 0.07,
+                            backgroundColor: Color.fromRGBO(255, 179, 0, 1),
+                            child: Icon(
+                              MdiIcons.bookEducationOutline,
+                              color: Colors.white,
+                              size: getScreenWidth(context) * 0.06,
+                            ),
+                          ),
+                          SizedBox(height: getScreenHeight(context) * 0.010),
+                          Text(
+                            'Offered Programs',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: getScreenWidth(context) * 0.03),
+                          ),
+                        ] else ...[
+                          if (user.email!.contains('teacher')) ...[
+                            CircleAvatar(
+                              radius: getScreenWidth(context) * 0.07,
+                              backgroundColor: Color.fromRGBO(255, 179, 0, 1),
+                              child: Icon(
+                                LineAwesomeIcons.user_tie,
+                                color: Colors.white,
+                                size: getScreenWidth(context) * 0.06,
+                              ),
+                            ),
+                            SizedBox(height: getScreenHeight(context) * 0.010),
+                            Text(
+                              'Staff Portal',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: getScreenWidth(context) * 0.03),
+                            ),
+                          ] else if (user.email!.contains('alumni')) ...[
+                            CircleAvatar(
+                              radius: getScreenWidth(context) * 0.07,
+                              backgroundColor: Color.fromRGBO(255, 179, 0, 1),
+                              child: Icon(
+                                LineAwesomeIcons.users,
+                                color: Colors.white,
+                                size: getScreenWidth(context) * 0.06,
+                              ),
+                            ),
+                            SizedBox(height: getScreenHeight(context) * 0.010),
+                            Text(
+                              'Alumni Relations',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: getScreenWidth(context) * 0.03),
+                            ),
+                          ] else ...[
+                            CircleAvatar(
+                              radius: getScreenWidth(context) * 0.07,
+                              backgroundColor: Color.fromRGBO(255, 179, 0, 1),
+                              child: Icon(
+                                LineAwesomeIcons.alternate_cloud_upload,
+                                color: Colors.white,
+                                size: getScreenWidth(context) * 0.06,
+                              ),
+                            ),
+                            SizedBox(height: getScreenHeight(context) * 0.010),
+                            Text(
+                              'Cloud Campus',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: getScreenWidth(context) * 0.03),
+                            ),
+                          ]
+                        ]
+                      ],
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      if (user.isAnonymous) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MyWebView(
+                                  url: 'https://ofad.ust.edu.ph/')),
+                        );
+                      } else {
+                        if (user.email!.contains('alumni')) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const MyWebView(
+                                    url:
+                                        'https://www.ust.edu.ph/academics/faculties-colleges-institutes-and-schools/')),
+                          );
+                        } else {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const MyWebView(
+                                      url: 'https://thomedss.ust.edu.ph/')));
+                        }
+                      }
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (user.isAnonymous) ...[
+                          CircleAvatar(
+                            radius: getScreenWidth(context) * 0.07,
+                            backgroundColor: Color.fromRGBO(255, 179, 0, 1),
+                            child: Icon(
+                              LineAwesomeIcons.question,
+                              color: Colors.white,
+                              size: getScreenWidth(context) * 0.06,
+                            ),
+                          ),
+                          SizedBox(height: getScreenHeight(context) * 0.010),
+                          Text(
+                            'OFAD',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: getScreenWidth(context) * 0.03),
+                          ),
+                        ] else ...[
+                          if (user.email!.contains('alumni')) ...[
+                            CircleAvatar(
+                              radius: getScreenWidth(context) * 0.07,
+                              backgroundColor: Color.fromRGBO(255, 179, 0, 1),
+                              child: Icon(
+                                LineAwesomeIcons.chalkboard_teacher,
+                                color: Colors.white,
+                                size: getScreenWidth(context) * 0.06,
+                              ),
+                            ),
+                            SizedBox(height: getScreenHeight(context) * 0.010),
+                            Text(
+                              'Faculties',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: getScreenWidth(context) * 0.03),
+                            ),
+                          ] else ...[
+                            CircleAvatar(
+                              radius: getScreenWidth(context) * 0.07,
+                              backgroundColor: Color.fromRGBO(255, 179, 0, 1),
+                              child: Icon(
+                                LineAwesomeIcons.medical_notes,
+                                color: Colors.white,
+                                size: getScreenWidth(context) * 0.06,
+                              ),
+                            ),
+                            SizedBox(height: getScreenHeight(context) * 0.010),
+                            Text(
+                              'ThOMedSS',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: getScreenWidth(context) * 0.03),
+                            ),
+                          ]
+                        ]
+                      ],
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MyWebView(
+                                url:
+                                    'https://www.ust.edu.ph/category/upcoming-events/')),
+                      );
+                    },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -209,14 +538,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           radius: getScreenWidth(context) * 0.07,
                           backgroundColor: Color.fromRGBO(255, 179, 0, 1),
                           child: Icon(
-                            MdiIcons.townHall,
+                            Ionicons.calendar_outline,
                             color: Colors.white,
                             size: getScreenWidth(context) * 0.06,
                           ),
                         ),
                         SizedBox(height: getScreenHeight(context) * 0.010),
                         Text(
-                          'General Info',
+                          'Events',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: getScreenWidth(context) * 0.03),
@@ -225,79 +554,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   InkWell(
-                    onTap: () {},
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CircleAvatar(
-                          radius: getScreenWidth(context) * 0.07,
-                          backgroundColor: Color.fromRGBO(255, 179, 0, 1),
-                          child: Icon(
-                            LineAwesomeIcons.chalkboard_teacher,
-                            color: Colors.white,
-                            size: getScreenWidth(context) * 0.06,
-                          ),
-                        ),
-                        SizedBox(height: getScreenHeight(context) * 0.010),
-                        Text(
-                          'Faculty and Staff',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: getScreenWidth(context) * 0.03),
-                        ),
-                      ],
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {},
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CircleAvatar(
-                          radius: getScreenWidth(context) * 0.07,
-                          backgroundColor: Color.fromRGBO(255, 179, 0, 1),
-                          child: Icon(
-                            MdiIcons.accountSchoolOutline,
-                            color: Colors.white,
-                            size: getScreenWidth(context) * 0.06,
-                          ),
-                        ),
-                        SizedBox(height: getScreenHeight(context) * 0.010),
-                        Text(
-                          'Alumni',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: getScreenWidth(context) * 0.03),
-                        ),
-                      ],
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {},
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CircleAvatar(
-                          radius: getScreenWidth(context) * 0.07,
-                          backgroundColor: Color.fromRGBO(255, 179, 0, 1),
-                          child: Icon(
-                            Ionicons.search_outline,
-                            color: Colors.white,
-                            size: getScreenWidth(context) * 0.06,
-                          ),
-                        ),
-                        SizedBox(height: getScreenHeight(context) * 0.010),
-                        Text(
-                          'Researches',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: getScreenWidth(context) * 0.03),
-                        ),
-                      ],
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MyWebView(
+                                url:
+                                    'https://www.ust.edu.ph/category/u-wide-news/')),
+                      );
+                    },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -312,7 +577,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         SizedBox(height: getScreenHeight(context) * 0.010),
                         Text(
-                          'News/Events',
+                          'News',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: getScreenWidth(context) * 0.03),
@@ -336,7 +601,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         SizedBox(height: getScreenHeight(context) * 0.010),
                         Text(
-                          'Shop',
+                          'Shops',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: getScreenWidth(context) * 0.03),
@@ -345,7 +610,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MyWebView(
+                                url: 'http://www.usthospital.com.ph/')),
+                      );
+                    },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -369,7 +641,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MyWebView(
+                                url: 'https://careers-ust.prosple.com/')),
+                      );
+                    },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -393,7 +672,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MyWebView(
+                                url: 'https://library.ust.edu.ph/')),
+                      );
+                    },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -417,7 +703,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MyWebView(
+                                url:
+                                    'https://www.ust.edu.ph/campus-life/recognized-student-organizations/')),
+                      );
+                    },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -465,7 +759,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MyWebView(
+                                url: 'https://www.ust.edu.ph//campus-map/')),
+                      );
+                    },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -492,7 +793,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Container(
             color: Colors.black,
-            height: getScreenHeight(context) * 0.10,
+            height: getScreenHeight(context) * 0.08,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -522,7 +823,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                  MaterialPageRoute(builder: (context) => AuthPage()),
                 );
               }),
           GButton(
@@ -556,12 +857,17 @@ class _HomeScreenState extends State<HomeScreen> {
             MaterialButton(
               onPressed: () {
                 Navigator.of(context, rootNavigator: true).pop('dialog');
+                signOut();
               },
               child: Text("Yes"),
             ),
             MaterialButton(
               onPressed: () {
                 Navigator.of(context, rootNavigator: true).pop('dialog');
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => super.widget));
               },
               child: Text("Cancel"),
             ),

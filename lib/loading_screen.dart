@@ -2,8 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'dart:async';
-
-import 'package:tom_conn/first_time_use.dart';
+import 'package:tom_conn/utilities/auth_page.dart';
 
 void main() {
   runApp(new LoadingPage());
@@ -17,7 +16,7 @@ class LoadingPage extends StatelessWidget {
       () => Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => OnboardingScreen(),
+          builder: (context) => AuthPage(),
         ),
       ),
     );
