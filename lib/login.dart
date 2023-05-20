@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tom_conn/utilities/getWH.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../utilities/all_platform.dart';
 
 class Login extends StatefulWidget {
   final Function()? onTap;
@@ -16,6 +17,12 @@ class _LoginState extends State<Login> {
   //controller
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final _captchaFormKey = GlobalKey<FormState>();
+  final _configFormKey = GlobalKey<FormState>();
+  final _localCaptchaController = LocalCaptchaController();
+  final _configFormData = ConfigFormData();
+
+  var _inputCode = '';
 
   void signIn() async {
     showDialog(
@@ -175,7 +182,11 @@ class _LoginState extends State<Login> {
                           backgroundColor:
                               const Color.fromRGBO(255, 179, 0, 1)),
                       onPressed: () {
-                        signIn();
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) => _buildCaptcha(context),
+                        );
+                        //signIn();
                       },
                       child: Text(
                         "LOGIN",
@@ -226,5 +237,122 @@ class _LoginState extends State<Login> {
         ],
       ),
     );
+  }
+
+  void dispose() {
+    _localCaptchaController.dispose();
+
+    super.dispose();
+  }
+
+  Widget _buildCaptcha(BuildContext context) {
+    return AlertDialog(
+      content: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Center(
+          child: SizedBox(
+            width: 300.0,
+            child: Form(
+              key: _captchaFormKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  LocalCaptcha(
+                    key: ValueKey(_configFormData.toString()),
+                    controller: _localCaptchaController,
+                    height: 150,
+                    width: 300,
+                    backgroundColor: Colors.grey[100]!,
+                    chars: _configFormData.chars,
+                    length: _configFormData.length,
+                    fontSize: _configFormData.fontSize > 0 ? _configFormData.fontSize : null,
+                    caseSensitive: _configFormData.caseSensitive,
+                    codeExpireAfter: _configFormData.codeExpireAfter,
+                  ),
+                  const SizedBox(height: 16.0),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: 'Enter code',
+                      hintText: 'Enter code',
+                      isDense: true,
+                      border: OutlineInputBorder(),
+                    ),
+                    validator: (value) {
+                      if (value != null && value.isNotEmpty) {
+                        if (value.length != _configFormData.length) {
+                          return '* Code must be length of ${_configFormData.length}.';
+                        }
+
+                        final validation = _localCaptchaController.validate(value);
+
+                        switch (validation) {
+                          case LocalCaptchaValidation.invalidCode:
+                            return '* Invalid code.';
+                          case LocalCaptchaValidation.codeExpired:
+                            return '* Code expired.';
+                          case LocalCaptchaValidation.valid:
+                          default:
+                            return null;
+                        }
+                      }
+
+                      return '* Required field.';
+                    },
+                    onSaved: (value) => _inputCode = value ?? '',
+                  ),
+                  const SizedBox(height: 16.0),
+                  SizedBox(
+                    height: 40.0,
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (_captchaFormKey.currentState?.validate() ?? false) { // If Correct
+                          _captchaFormKey.currentState!.save();
+                          signIn();
+                          Navigator.of(context).pop();
+                        }
+                        else if (_captchaFormKey.currentState?.validate() == false) { // if wrong
+                          _localCaptchaController.refresh();
+                        }
+                      },
+                      child: const Text('Validate Code'),
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xFFfec00f),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16.0),
+                  SizedBox(
+                    height: 40.0,
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () => _localCaptchaController.refresh(),
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.blueGrey,
+                      ),
+                      child: const Text('Refresh'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+      // body: LocalCaptcha(),
+    );
+  }
+}
+
+class ConfigFormData {
+  String chars = 'abdefghnryABDEFGHNQRY3468';
+  int length = 5;
+  double fontSize = 0;
+  bool caseSensitive = false;
+  Duration codeExpireAfter = const Duration(minutes: 10);
+
+  @override
+  String toString() {
+    return '$chars$length$caseSensitive${codeExpireAfter.inMinutes}';
   }
 }

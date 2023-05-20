@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
+import 'package:tom_conn/homepage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:tom_conn/utilities/auth_page.dart';
 import 'package:tom_conn/aboutUs.dart';
 import 'package:tom_conn/editPW.dart';
 import 'package:tom_conn/homepage.dart';
@@ -9,6 +12,7 @@ import 'package:tom_conn/settings.dart';
 import 'package:tom_conn/utilities/auth_page.dart';
 import 'package:tom_conn/utilities/getWH.dart';
 import 'package:tom_conn/contactUs.dart';
+import 'package:tom_conn/encryption_checker.dart';
 
 class settingsList extends StatefulWidget {
   const settingsList({Key? key}) : super(key: key);
@@ -22,6 +26,8 @@ class _settingsListState extends State<settingsList> {
 
   @override
   Widget build(BuildContext context) {
+    var stackTrace = StackTrace.current;
+    var className = stackTrace.toString();
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
@@ -117,6 +123,7 @@ class _settingsListState extends State<settingsList> {
               icon: Icons.home,
               text: 'Home',
               onPressed: () {
+            print("Stack Trace = $className");
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => AuthPage()),
@@ -126,6 +133,7 @@ class _settingsListState extends State<settingsList> {
               icon: Icons.settings,
               text: 'Settings',
               onPressed: () {
+                print("Stack Trace = $className");
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const settingsList()),
@@ -135,6 +143,7 @@ class _settingsListState extends State<settingsList> {
               icon: Icons.logout,
               text: 'Log Out',
               onPressed: () {
+                print("Stack Trace = $className");
                 _confirmLogout();
               }),
         ],
@@ -174,105 +183,126 @@ class _settingsListState extends State<settingsList> {
   }
 
   Widget buildLogout() => SimpleSettingsTile(
-        leading: IconButton(
-          icon: const Icon(Icons.logout),
-          color: Colors.blueAccent,
-          onPressed: () {
-            //Do something
-          },
-        ),
-        title: 'Logout',
-        subtitle: '',
-        onTap: () {
-          //Do something or logout
-        },
-      );
+    leading: IconButton(
+      icon: const Icon(Icons.logout),
+      color: Colors.blueAccent,
+      onPressed: () {
+        _confirmLogout();
+      },
+    ),
+    title: 'Logout',
+    subtitle: '',
+    onTap: () {
+      _confirmLogout();
+    },
+  );
 
   Widget buildAccount() => SimpleSettingsTile(
-        leading: IconButton(
-          icon: const Icon(Icons.person),
-          color: Colors.green,
-          onPressed: () {
-            //Do something
-          },
-        ),
-        title: 'Account Settings',
-        subtitle: 'Name, Affiliation, College',
-        //Add container child to put '>' icon in the list
-        onTap: () {
-          //Do something or logout
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const settings()),
-          );
-        },
+    leading: IconButton(
+      icon: const Icon(Icons.person),
+      color: Colors.green,
+      onPressed: () {
+        //Do something
+      },
+    ),
+    title: 'Account Settings',
+    subtitle: 'Name, Affiliation, College',
+    //Add container child to put '>' icon in the list
+    onTap: () {
+      //Do something or logout
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const settings()),
       );
+    },
+  );
 
   Widget buildPassword() => SimpleSettingsTile(
-        leading: IconButton(
-          icon: const Icon(Icons.password),
-          color: Colors.black,
-          onPressed: () {
-            //Do something
-          },
-        ),
-        title: 'Change Password',
-        subtitle: '',
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const editPW()),
-          );
-        },
+    leading: IconButton(
+      icon: const Icon(Icons.password),
+      color: Colors.black,
+      onPressed: () {
+        //Do something
+      },
+    ),
+    title: 'Change Password',
+    subtitle: '',
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const editPW()),
       );
+    },
+  );
 
   Widget buildDisclaimer() => SimpleSettingsTile(
-        leading: IconButton(
-          icon: const Icon(Icons.copyright),
-          color: Colors.deepOrange,
-          onPressed: () {},
-        ),
-        title: 'Disclaimer',
-        subtitle: '',
-        onTap: () {
-          _showDisclaimer();
-          print("object");
-        },
-      );
+    leading: IconButton(
+      icon: const Icon(Icons.copyright),
+      color: Colors.deepOrange,
+      onPressed: () {
+      },
+    ),
+    title: 'Disclaimer',
+    subtitle: '',
+    onTap: () {
+      _showDisclaimer();
+      print("object");
+    },
+  );
 
   Widget buildAboutUs() => SimpleSettingsTile(
-        leading: IconButton(
-          icon: const Icon(Icons.info),
-          color: Colors.grey,
-          onPressed: () {},
-        ),
-        title: 'About Us',
-        subtitle: '',
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const aboutUs()),
-          );
-        },
+    leading: IconButton(
+      icon: const Icon(Icons.info),
+      color: Colors.grey,
+      onPressed: () {},
+    ),
+    title: 'About Us',
+    subtitle: '',
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const aboutUs()),
       );
+    },
+  );
 
   Widget buildContactUs() => SimpleSettingsTile(
-        leading: IconButton(
-          icon: const Icon(Icons.phone),
-          color: Colors.purple,
-          onPressed: () {
-            //Do something
-          },
-        ),
-        title: 'Contact Us',
-        subtitle: '',
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const contactUs()),
-          );
-        },
+    leading: IconButton(
+      icon: const Icon(Icons.phone),
+      color: Colors.purple,
+      onPressed: () {
+        //Do something
+      },
+    ),
+    title: 'Contact Us',
+    subtitle: '',
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const contactUs()),
       );
+    },
+  );
+
+  Widget buildEncrypt() => SimpleSettingsTile(
+    leading: IconButton(
+      icon: const Icon(Icons.enhanced_encryption),
+      color: Colors.red,
+      onPressed: () {
+        //Do something
+      },
+    ),
+    title: 'Encryption Checker',
+    subtitle: '',
+    //Add container child to put '>' icon in the list
+    onTap: () {
+      //Do something or logout
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => encryptionCheck()),
+      );
+    },
+  );
 
   void _showDisclaimer() {
     showDialog(
@@ -305,23 +335,38 @@ class _settingsListState extends State<settingsList> {
       builder: (context) {
         return AlertDialog(
           title: Text("Confirm Log Out"),
-          content: Text("Do you want to log out?"),
+          content: Text(
+              "Do you want to log out?"),
           actions: [
             MaterialButton(
               onPressed: () {
                 Navigator.of(context, rootNavigator: true).pop('dialog');
+                //Navigator.push(context, MaterialPageRoute(builder: context) => HomeScreen),
+                signOut();
               },
               child: Text("Yes"),
             ),
             MaterialButton(
               onPressed: () {
                 Navigator.of(context, rootNavigator: true).pop('dialog');
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => super.widget));
               },
               child: Text("Cancel"),
             ),
           ],
         );
       },
+    );
+  }
+
+  void signOut() {
+    FirebaseAuth.instance.signOut();
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => AuthPage()),
     );
   }
 }
