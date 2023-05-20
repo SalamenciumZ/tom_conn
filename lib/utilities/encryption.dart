@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:tom_conn/encryption_checker.dart';
 import 'package:tom_conn/editPW.dart';
-import 'package:tom_conn/settings.dart';
+import 'package:tom_conn/accSettings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tom_conn/utilities/auth_page.dart';
 

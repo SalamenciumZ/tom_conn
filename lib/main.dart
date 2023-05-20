@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tom_conn/first_time_use.dart';
 import 'package:tom_conn/homepage.dart';
 import 'package:tom_conn/loading_screen.dart';
-import 'package:tom_conn/settings.dart';
+import 'package:tom_conn/accSettings.dart';
 import 'package:tom_conn/settingsList.dart';
 import 'package:tom_conn/editPW.dart';
 import 'package:firebase_core/firebase_core.dart';

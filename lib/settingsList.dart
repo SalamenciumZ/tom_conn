@@ -8,7 +8,7 @@ import 'package:tom_conn/utilities/auth_page.dart';
 import 'package:tom_conn/aboutUs.dart';
 import 'package:tom_conn/editPW.dart';
 import 'package:tom_conn/homepage.dart';
-import 'package:tom_conn/settings.dart';
+import 'package:tom_conn/accSettings.dart';
 import 'package:tom_conn/utilities/auth_page.dart';
 import 'package:tom_conn/utilities/getWH.dart';
 import 'package:tom_conn/contactUs.dart';

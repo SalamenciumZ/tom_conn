@@ -23,6 +23,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void signOut() {
     FirebaseAuth.instance.signOut();
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => AuthPage()),
+    );
   }
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -853,12 +857,17 @@ class _HomeScreenState extends State<HomeScreen> {
             MaterialButton(
               onPressed: () {
                 Navigator.of(context, rootNavigator: true).pop('dialog');
+                signOut();
               },
               child: Text("Yes"),
             ),
             MaterialButton(
               onPressed: () {
                 Navigator.of(context, rootNavigator: true).pop('dialog');
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => super.widget));
               },
               child: Text("Cancel"),
             ),
