@@ -37,8 +37,14 @@ class _NavTextState extends State<NavText> {
   }}
 
 class MyApp extends StatelessWidget {
-  final List<String> itemTitles = [    'Starbucks',    'Jollibee',    'Pancake House',    'Ramen 99',    'Tokyo Tokyo',    'McDonald\'s',    'KFC',    'Chowking',    'Yellow Cab',    'Mang Inasal',  ];
-  final List<String> itemImages = [    'assets/images/starbsLogo.png',    'assets/images/jolliLogo.png',    'assets/images/pancakeLogo.png',    'assets/images/Ramen99Logo.png',    'assets/images/tokyoLogo.png',    'assets/images/mcdoLogo.png',    'assets/images/kfcLogo.png',    'assets/images/chowLogo.png',    'assets/images/yCabLogo.png',    'assets/images/inasalLogo.png',  ];
+  final List<String> itemTitles = [    'Starbucks',    'Jollibee',    'Pancake House',
+    'Ramen 99',    'Tokyo Tokyo',    'McDonald\'s',    'KFC',    'Chowking',    'Yellow Cab',    'Mang Inasal',  ];
+  final List<String> itemImages = [    'assets/images/starbsLogo.png',
+    'assets/images/jolliLogo.png',    'assets/images/pancakeLogo.png',
+    'assets/images/Ramen99Logo.png',    'assets/images/tokyoLogo.png',
+    'assets/images/mcdoLogo.png',    'assets/images/kfcLogo.png',
+    'assets/images/chowLogo.png',    'assets/images/yCabLogo.png',
+    'assets/images/inasalLogo.png',  ];
 
   @override
   Widget build(BuildContext context) {

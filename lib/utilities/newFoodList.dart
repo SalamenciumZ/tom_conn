@@ -1,13 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:tom_conn/utilities/ConvStore.dart';
 import 'package:tom_conn/utilities/FastFood.dart';
+import 'package:tom_conn/utilities/CoffeeShop.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
-class ConvStore extends StatelessWidget {
-  final List<String> itemTitles = [    '7-Eleven', 'Lawson',  ];
-  final List<String> itemImages = [    'assets/images/SevenEleven.png',    'assets/images/lawson.png',  ];
+
+
+void main() {
+  runApp(newFoodList());
+}
+
+class newFoodList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(primarySwatch: Colors.blue),
+      routes: {
+        '/': (context) => newFoodListPage(),
+        '/convenientStores': (context) => ConvStore(),
+        '/fastFood': (context) => FastFood(),
+        '/coffeeShop': (context) => CoffeeShop(),
+      },
+      initialRoute: '/',
+    );
+  }
+}
+
+class newFoodListPage extends StatelessWidget {
+  final List<String> itemTitles =
+  [
+    'Starbucks',
+    'Pancake House',
+    'Ramen 99',
+    'Tokyo Tokyo',
+    'Chowking',
+  ];
+
+  final List<String> itemImages = [
+    'assets/images/starbsLogo.png',
+    'assets/images/pancakeLogo.png',
+    'assets/images/Ramen99Logo.png',
+    'assets/images/tokyoLogo.png',
+    'assets/images/chowLogo.png',
+    ];
 
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -18,7 +57,6 @@ class ConvStore extends StatelessWidget {
             child: TextButton(
               style: TextButton.styleFrom(
                 primary: Colors.white, // Set black text color
-                textStyle: TextStyle(color: Colors.white), // Set white glow when hovered
               ),
               onPressed: () {
                 Navigator.pushNamed(context, '/convenientStores');
@@ -30,13 +68,15 @@ class ConvStore extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 8.0),
             child: TextButton(
               style: TextButton.styleFrom(
-                primary: Colors.white, // Set black text color
-                textStyle: TextStyle(color: Colors.white), // Set white glow when hovered
-              ),
+              primary: Colors.white,
+    ),
               onPressed: () {
                 Navigator.pushNamed(context, '/fastFood');
               },
-              child: Text('Fast Food'),
+              child: Text(
+                'Fast Food',
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
             ),
           ),
           Padding(
@@ -44,7 +84,6 @@ class ConvStore extends StatelessWidget {
             child: TextButton(
               style: TextButton.styleFrom(
                 primary: Colors.white, // Set black text color
-                textStyle: TextStyle(color: Colors.white), // Set white glow when hovered
               ),
               onPressed: () {
                 Navigator.pushNamed(context, '/coffeeShop');
@@ -61,14 +100,20 @@ class ConvStore extends StatelessWidget {
             return MouseRegion(
               cursor: SystemMouseCursors.click,
               child: InkWell(
-                onTap: () {
+                onTap: ()  {
                   String itemTitle = itemTitles[index];
                   String url = "";
 
                   if (itemTitle == 'Starbucks') {
                     url = 'https://www.starbucks.ph/';
-                  } else if (itemTitle == 'Seattle\s Best') {
-                    url = 'https://seattlesbest.com.ph/';
+                  } else if (itemTitle == 'Pancake House') {
+                    url = 'https://www.pancakehouse.com.ph/';
+                  }else if(itemTitle == 'Ramen99'){
+                    url = 'https://www.smsupermalls.com/mall-directory/tenants/smtm/KYU+KYU+RAMEN+99/https://www.smsupermalls.com/mall-directory/tenants/smtm/KYU+KYU+RAMEN+99/';
+                  }else if(itemTitle == 'Tokyo Tokyo'){
+                    url = 'https://www.tokyotokyodelivery.ph/';
+                  }else if(itemTitle == 'Chowking'){
+                   url = 'https://www.chowkingdelivery.com/home';
                   }
 
                   if (url.isNotEmpty) {
@@ -133,3 +178,11 @@ void _launchURL(BuildContext context, String url) async {
     throw 'Could not launch $url';
   }
 }
+
+
+
+
+
+
+
+

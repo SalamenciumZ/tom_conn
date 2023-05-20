@@ -1,68 +1,111 @@
 import 'package:flutter/material.dart';
+import 'package:tom_conn/utilities/ConvStore.dart';
+import 'package:tom_conn/utilities/FastFood.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-void main() {
-  runApp(MyApp());
-}
+class FastFood extends StatelessWidget {
+  final List<String> itemTitles =
+  [
+    'Pancake House',
+    'Ramen 99',
+    'Tokyo Tokyo',
+    'Chowking',
+  ];
 
-
-class NavText extends StatefulWidget {
-  final String text;
-
-  NavText(this.text);
-
-  @override
-  _NavTextState createState() => _NavTextState();
-}
-
-class _NavTextState extends State<NavText> {
-  bool _hovered = false;
+  final List<String> itemImages = [
+    'assets/images/pancakeLogo.png',
+    'assets/images/Ramen99Logo.png',
+    'assets/images/tokyoLogo.png',
+    'assets/images/chowLogo.png',
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (event) => setState(() => _hovered = true),
-      onExit: (event) => setState(() => _hovered = false),
-      child: GestureDetector(
-        onTap: () => print(widget.text),
-        child: Text(
-          widget.text,
-          style: TextStyle(
-            color: _hovered ? Colors.yellow : Colors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black, // Set yellow background color
+        actions: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextButton(
+              style: TextButton.styleFrom(
+                primary: Colors.white, // Set black text color
+                textStyle: TextStyle(color: Colors.white), // Set white glow when hovered
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/convenientStores');
+              },
+              child: Text('Convenient Stores'),
+            ),
           ),
-        ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextButton(
+              style: TextButton.styleFrom(
+                primary: Colors.white, // Set black text color
+                textStyle: TextStyle(color: Colors.white), // Set white glow when hovered
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/fastFood');
+              },
+              child: Text('Fast Food'),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextButton(
+              style: TextButton.styleFrom(
+                primary: Colors.white, // Set black text color
+                textStyle: TextStyle(color: Colors.white), // Set white glow when hovered
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/coffeeShop');
+              },
+              child: Text('Coffee Shop'),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextButton(
+              style: TextButton.styleFrom(
+                primary: Colors.white, // Set black text color
+                textStyle: TextStyle(color: Colors.white), // Set white glow when hovered
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/');
+              },
+              child: Text('All'),
+            ),
+          ),
+
+        ],
       ),
-    );
-  }}
-
-class MyApp extends StatelessWidget {
-  final List<String> itemTitles = [   'Jollibee',    'Pancake House',    'Ramen 99',    'Tokyo Tokyo',    'McDonald\'s',    'KFC',    'Chowking',    'Yellow Cab',    'Mang Inasal',  ];
-  final List<String> itemImages = [    'assets/images/jolliLogo.png',    'assets/images/pancakeLogo.png',
-    'assets/images/Ramen99Logo.png',    'assets/images/tokyoLogo.png',    'assets/images/mcdoLogo.png',
-    'assets/images/kfcLogo.png',    'assets/images/chowLogo.png',    'assets/images/yCabLogo.png',
-    'assets/images/inasalLogo.png',  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'ListView with Images',
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.amber,
-          title: Text(
-            'University of Santo Tomas Restaurants',
-            style: TextStyle(color: Colors.black),
-          ),
-        ),
-        body: ListView.builder(
+      body: Center(
+        child: ListView.builder(
           itemCount: itemTitles.length,
           itemBuilder: (BuildContext context, int index) {
             return MouseRegion(
               cursor: SystemMouseCursors.click,
               child: InkWell(
                 onTap: () {
-                  print('Item $index clicked');
+                  String itemTitle = itemTitles[index];
+                  String url = "";
+
+                  if (itemTitle == 'Starbucks') {
+                    url = 'https://www.starbucks.ph/';
+                  } else if (itemTitle == 'Pancake House') {
+                    url = 'https://www.pancakehouse.com.ph/';
+                  }else if(itemTitle == 'Ramen99'){
+                    url = 'https://www.smsupermalls.com/mall-directory/tenants/smtm/KYU+KYU+RAMEN+99/https://www.smsupermalls.com/mall-directory/tenants/smtm/KYU+KYU+RAMEN+99/';
+                  }else if(itemTitle == 'Tokyo Tokyo'){
+                    url = 'https://www.tokyotokyodelivery.ph/';
+                  }else if(itemTitle == 'Chowking'){
+                    url = 'https://www.chowkingdelivery.com/home';
+                  }
+
+                  if (url.isNotEmpty) {
+                    _launchURL(context, url);
+                  }
                 },
                 child: Container(
                   height: 100,
@@ -94,11 +137,11 @@ class MyApp extends StatelessWidget {
                       ),
                       SizedBox(width: 16),
                       Expanded(
-                        child: TextFormField(
-                          initialValue: itemTitles[index],
-                          decoration: InputDecoration(
-                            border: UnderlineInputBorder(),
-                            labelText: 'Title',
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+                          child: Text(
+                            itemTitles[index],
+                            style: TextStyle(fontSize: 18),
                           ),
                         ),
                       ),
@@ -109,20 +152,16 @@ class MyApp extends StatelessWidget {
             );
           },
         ),
-        bottomNavigationBar: Container(
-          height: 60,
-          color: Colors.black,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              NavText('Convenient store'),
-              NavText('Fast Food'),
-              NavText('Coffee Shop'),
-            ],
-          ),
-        ),
+
       ),
     );
   }
 }
 
+void _launchURL(BuildContext context, String url) async {
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
