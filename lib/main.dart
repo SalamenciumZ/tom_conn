@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       scaffoldMessengerKey: _scaffoldK,
       title: 'Header Example',
       debugShowCheckedModeBanner: false,
-      home: isViewed != 0 ? OnboardingScreen() : AuthPage(),
+      home: isViewed != 0 ? OnboardingScreen() : LoadingPage(),
       routes: {
         '/home': (context) => HomeScreen(),
         '/loading': (context) => LoadingPage(),
