@@ -39,102 +39,63 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.black,
         elevation: 0,
         automaticallyImplyLeading: false,
-        leading: InkWell(
-          onTap: () {
-            _scaffoldKey.currentState!.openDrawer();
-          },
-          child: Icon(
-            Icons.menu,
-            color: Colors.white,
-          ),
-        ),
         actions: [
-          Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: getScreenWidth(context) * 0.005),
-            child: TextButton(
-              onPressed: () {},
-              child: Text(
-                'About',
-                style: TextStyle(
-                  fontSize: getScreenWidth(context) * 0.03,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: getScreenWidth(context) * 0.005),
-            child: TextButton(
-              onPressed: () {},
-              child: Text(
-                'Contact Us',
-                style: TextStyle(
-                  fontSize: getScreenWidth(context) * 0.03,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: getScreenWidth(context) * 0.005),
-            child: TextButton(
-              onPressed: () {},
-              child: Text(
-                'Support',
-                style: TextStyle(
-                  fontSize: getScreenWidth(context) * 0.03,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: getScreenWidth(context) * 0.005),
-            child: TextButton(
-              onPressed: () {},
-              child: Text(
-                'FAQs',
-                style: TextStyle(
-                  fontSize: getScreenWidth(context) * 0.03,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: getScreenWidth(context) * 0.005),
-            child: TextButton(
-              onPressed: () {
-                signOut();
-              },
-              child: Row(
-                children: [
-                  if (user.isAnonymous) ...[
-                    Text(
-                      'Log In',
-                      style: TextStyle(
-                        fontSize: getScreenWidth(context) * 0.03,
-                        color: Colors.white,
-                      ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/about');
+                  },
+                  child: Text(
+                    'About Us',
+                    style: TextStyle(
+                      fontSize: getScreenWidth(context) * 0.04,
+                      color: Colors.white,
                     ),
-                  ],
-                  if (!user.isAnonymous) ...[
-                    Text(
-                      'Log Out',
-                      style: TextStyle(
-                        fontSize: getScreenWidth(context) * 0.03,
-                        color: Colors.white,
-                      ),
-                    )
-                  ]
-                ],
+                  ),
+                ),
               ),
-            ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/contact');
+                },
+                child: Text(
+                  'Contact Us',
+                  style: TextStyle(
+                    fontSize: getScreenWidth(context) * 0.04,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  signOut();
+                },
+                child: Row(
+                  children: [
+                    if (user.isAnonymous) ...[
+                      Text(
+                        'Log In',
+                        style: TextStyle(
+                          fontSize: getScreenWidth(context) * 0.04,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                    if (!user.isAnonymous) ...[
+                      Text(
+                        'Log Out',
+                        style: TextStyle(
+                          fontSize: getScreenWidth(context) * 0.04,
+                          color: Colors.white,
+                        ),
+                      )
+                    ]
+                  ],
+                ),
+              ),
+            ],
           ),
         ],
       ),

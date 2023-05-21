@@ -4,6 +4,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:tom_conn/homepage.dart';
 import 'package:tom_conn/accSettings.dart';
 import 'package:tom_conn/settingsList.dart';
+import 'package:tom_conn/utilities/auth_page.dart';
 import 'package:tom_conn/utilities/getWH.dart';
 import 'package:flutter/services.dart';
 
@@ -15,10 +16,8 @@ class contactUs extends StatefulWidget {
 }
 
 class _contactUs extends State<contactUs> {
-
   @override
   Widget build(BuildContext context) {
-
     const emailSB = SnackBar(
       content: Text('Copied contact email!'),
     );
@@ -99,8 +98,7 @@ class _contactUs extends State<contactUs> {
                           padding: EdgeInsets.all(5.0),
                           primary: Color(0xFFffffff).withOpacity(0.0),
                           side: BorderSide(color: Colors.black87, width: 2),
-                          shape: StadiumBorder()
-                      ),
+                          shape: StadiumBorder()),
                     ),
                   ),
                   SizedBox(height: 30),
@@ -124,8 +122,7 @@ class _contactUs extends State<contactUs> {
                           padding: EdgeInsets.all(5.0),
                           primary: Color(0xFFffffff).withOpacity(0.0),
                           side: BorderSide(color: Colors.black87, width: 2),
-                          shape: StadiumBorder()
-                      ),
+                          shape: StadiumBorder()),
                     ),
                   ),
                   SizedBox(height: 30),
@@ -134,8 +131,8 @@ class _contactUs extends State<contactUs> {
                     width: 225,
                     child: ElevatedButton(
                       onPressed: () async {
-                        await Clipboard.setData(
-                            ClipboardData(text: "https://www.facebook.com/UST1611official"));
+                        await Clipboard.setData(ClipboardData(
+                            text: "https://www.facebook.com/UST1611official"));
                         // copied successfully
                         ScaffoldMessenger.of(context).showSnackBar(fbSB);
                       },
@@ -149,8 +146,7 @@ class _contactUs extends State<contactUs> {
                           padding: EdgeInsets.all(5.0),
                           primary: Color(0xFFffffff).withOpacity(0.0),
                           side: BorderSide(color: Colors.black87, width: 2),
-                          shape: StadiumBorder()
-                      ),
+                          shape: StadiumBorder()),
                     ),
                   ),
                 ],
@@ -167,21 +163,27 @@ class _contactUs extends State<contactUs> {
         gap: 10,
         tabMargin: EdgeInsets.only(left: 10, right: 10),
         tabs: [
-          GButton(icon: Icons.home, text: 'Home',
+          GButton(
+              icon: Icons.home,
+              text: 'Home',
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                  MaterialPageRoute(builder: (context) => AuthPage()),
                 );
               }),
-          GButton(icon: Icons.settings, text: 'Settings',
+          GButton(
+              icon: Icons.settings,
+              text: 'Settings',
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const settingsList()),
                 );
               }),
-          GButton(icon: Icons.logout, text: 'Log Out',
+          GButton(
+              icon: Icons.logout,
+              text: 'Log Out',
               onPressed: () {
                 _confirmLogout();
               }),
@@ -196,8 +198,7 @@ class _contactUs extends State<contactUs> {
       builder: (context) {
         return AlertDialog(
           title: Text("Confirm Log Out"),
-          content: Text(
-              "Do you want to log out?"),
+          content: Text("Do you want to log out?"),
           actions: [
             MaterialButton(
               onPressed: () {

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tom_conn/aboutUs.dart';
+import 'package:tom_conn/contactUs.dart';
 import 'package:tom_conn/first_time_use.dart';
 import 'package:tom_conn/homepage.dart';
 import 'package:tom_conn/loading_screen.dart';
@@ -52,6 +54,8 @@ class MyApp extends StatelessWidget {
         '/fastFood': (context) => FastFood(),
         '/coffeeShop': (context) => CoffeeShop(),
         '/shop': (context) => Shops(),
+        '/contact': (context) => contactUs(),
+        '/about': (context) => aboutUs(),
       },
     );
   }

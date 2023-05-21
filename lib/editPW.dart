@@ -4,6 +4,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:tom_conn/settingsList.dart';
 import 'package:tom_conn/aboutUs.dart';
 import 'package:tom_conn/homepage.dart';
+import 'package:tom_conn/utilities/auth_page.dart';
 
 class editPW extends StatefulWidget {
   const editPW({Key? key}) : super(key: key);
@@ -58,9 +59,12 @@ class _editPass extends State<editPW> {
               SizedBox(
                 height: 35,
               ),
-              buildTextField(cPasswordController, "Current Password", "********", true),
-              buildTextField(nPasswordController, "New Password", "********", true),
-              buildTextField(cnPasswordController, "Repeat New Password", "********", true),
+              buildTextField(
+                  cPasswordController, "Current Password", "********", true),
+              buildTextField(
+                  nPasswordController, "New Password", "********", true),
+              buildTextField(cnPasswordController, "Repeat New Password",
+                  "********", true),
               SizedBox(
                 height: 35,
               ),
@@ -117,21 +121,27 @@ class _editPass extends State<editPW> {
         gap: 10,
         tabMargin: EdgeInsets.only(left: 10, right: 10),
         tabs: [
-          GButton(icon: Icons.home, text: 'Home',
+          GButton(
+              icon: Icons.home,
+              text: 'Home',
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                  MaterialPageRoute(builder: (context) => AuthPage()),
                 );
               }),
-          GButton(icon: Icons.settings, text: 'Settings',
+          GButton(
+              icon: Icons.settings,
+              text: 'Settings',
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const settingsList()),
                 );
               }),
-          GButton(icon: Icons.logout, text: 'Log Out',
+          GButton(
+              icon: Icons.logout,
+              text: 'Log Out',
               onPressed: () {
                 _confirmLogout();
               }),
@@ -140,7 +150,8 @@ class _editPass extends State<editPW> {
     );
   }
 
-  Widget buildTextField(TextEditingController controller, labelText, String placeholder, bool isObscure) {
+  Widget buildTextField(TextEditingController controller, labelText,
+      String placeholder, bool isObscure) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 25.0),
       child: TextField(
@@ -178,8 +189,7 @@ class _editPass extends State<editPW> {
       builder: (context) {
         return AlertDialog(
           title: Text("Confirm Log Out"),
-          content: Text(
-              "Do you want to log out?"),
+          content: Text("Do you want to log out?"),
           actions: [
             MaterialButton(
               onPressed: () {

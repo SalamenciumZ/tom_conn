@@ -4,6 +4,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:tom_conn/homepage.dart';
 import 'package:tom_conn/accSettings.dart';
 import 'package:tom_conn/settingsList.dart';
+import 'package:tom_conn/utilities/auth_page.dart';
 import 'package:tom_conn/utilities/getWH.dart';
 
 class aboutUs extends StatefulWidget {
@@ -55,21 +56,27 @@ class _aboutUs extends State<aboutUs> {
         gap: 10,
         tabMargin: EdgeInsets.only(left: 10, right: 10),
         tabs: [
-          GButton(icon: Icons.home, text: 'Home',
+          GButton(
+              icon: Icons.home,
+              text: 'Home',
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                  MaterialPageRoute(builder: (context) => AuthPage()),
                 );
               }),
-          GButton(icon: Icons.settings, text: 'Settings',
+          GButton(
+              icon: Icons.settings,
+              text: 'Settings',
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const settingsList()),
                 );
               }),
-          GButton(icon: Icons.logout, text: 'Log Out',
+          GButton(
+              icon: Icons.logout,
+              text: 'Log Out',
               onPressed: () {
                 _confirmLogout();
               }),
@@ -84,8 +91,7 @@ class _aboutUs extends State<aboutUs> {
       builder: (context) {
         return AlertDialog(
           title: Text("Confirm Log Out"),
-          content: Text(
-              "Do you want to log out?"),
+          content: Text("Do you want to log out?"),
           actions: [
             MaterialButton(
               onPressed: () {
