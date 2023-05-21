@@ -41,21 +41,21 @@ class _HomeScreenState extends State<HomeScreen> {
         automaticallyImplyLeading: false,
         actions: [
           Row(
+            mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Expanded(
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/about');
-                  },
-                  child: Text(
-                    'About Us',
-                    style: TextStyle(
-                      fontSize: getScreenWidth(context) * 0.04,
-                      color: Colors.white,
-                    ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/about');
+                },
+                child: Text(
+                  'About Us',
+                  style: TextStyle(
+                    fontSize: getScreenWidth(context) * 0.04,
+                    color: Colors.white,
                   ),
                 ),
               ),
+              SizedBox(width: getScreenWidth(context) * 0.1),
               TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/contact');
@@ -68,6 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
+              SizedBox(width: getScreenWidth(context) * 0.1),
               TextButton(
                 onPressed: () {
                   signOut();
@@ -95,6 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
+              SizedBox(width: getScreenWidth(context) * 0.1),
             ],
           ),
         ],
