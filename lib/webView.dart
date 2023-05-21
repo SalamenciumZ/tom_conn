@@ -18,7 +18,7 @@ class _MyWebViewState extends State<MyWebView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('WebView'),
+        backgroundColor: Color.fromRGBO(254, 192, 15, 1),
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -37,6 +37,12 @@ class _MyWebViewState extends State<MyWebView> {
       body: WebView(
         initialUrl: widget.url,
         javascriptMode: JavascriptMode.unrestricted,
+        onWebViewCreated: (controller) {
+          this.controller = controller;
+        },
+        onPageStarted: (url) {
+          print('url: $url');
+        },
       ),
     );
   }

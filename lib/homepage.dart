@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:tom_conn/WebView.dart';
+import 'package:tom_conn/webView.dart';
 import 'package:tom_conn/utilities/auth_page.dart';
 import 'package:tom_conn/utilities/getWH.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -586,7 +586,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, '/shop');
+                    },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

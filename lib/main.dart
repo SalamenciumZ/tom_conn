@@ -8,6 +8,7 @@ import 'package:tom_conn/accSettings.dart';
 import 'package:tom_conn/settingsList.dart';
 import 'package:tom_conn/editPW.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:tom_conn/shop.dart';
 import 'package:tom_conn/utilities/CoffeeShop.dart';
 import 'package:tom_conn/utilities/ConvStore.dart';
 import 'package:tom_conn/utilities/FastFood.dart';
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
         '/convenientStores': (context) => ConvStore(),
         '/fastFood': (context) => FastFood(),
         '/coffeeShop': (context) => CoffeeShop(),
+        '/shop': (context) => Shops(),
       },
     );
   }
